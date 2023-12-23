@@ -1,0 +1,9 @@
+# Ignore everything
+/*
+!.gitignore
+
+# Except these folders
+!alacritty
+!rofi
+!qtile
+!neofetch
