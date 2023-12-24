@@ -39,7 +39,7 @@ from libqtile.utils import guess_terminal
 
 dispositivo_red = "wlp0s20f3"
 mod = "mod4"
-terminal = guess_terminal()
+terminal = "alacritty"
 
 blanco = "#ffffff"
 negro = "#000000"
@@ -65,7 +65,7 @@ comando_bloqueo_pantalla = "i3lock"
 
 # Configuracion barra
 color_barra = color_0
-tamano_barra = 26
+tamano_barra = 22
 
 tamano_iconos = 23
 color_activo = color_5 # Color de icono cuando esta activa la ventana
@@ -151,7 +151,7 @@ keys = [
         lazy.layout.toggle_split(),
         desc="Toggle between split and unsplit sides of stack",
     ),
-    Key([mod], "Return", lazy.spawn("alacritty"), desc="Launch terminal"),
+    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
 
    # Firefox
    Key([mod], "b", lazy.spawn("google-chrome-stable"), desc="Abrir chrome"),
@@ -211,11 +211,11 @@ groups = [Group(i) for i in [
 #   4 -- nf-dev-terminal
 #   5 -- nf-cod-project
 #   6 -- nf-md-file
-#   7 -- nf-fa-spotify
-#   8 -- nf-dev-terminal_badge
+#   7 -- nf-dev-terminal_badge
+#   8 -- nf-fa-spotify
 
 
-    " ", " ", "󰨞 ",  " ", " ", "󰈔", " ","󰓩 "
+    " ", " ", "󰨞 "," ", " ", "󰈔 ","󰓩 "," "
 ]]
 
 for i, group in enumerate(groups):
@@ -358,15 +358,15 @@ screens = [
                     update_interval = 15,
                 ),
                 separador(5, color_g3),
-                widget.TextBox( text="󰍛", background=color_g3, foreground=blanco,fontsize=tamano_iconos, padding=6),
-                widget.Memory(
-                    font="Ubuntu Mono Bold Nerd Font Bold",
-                    format = '{MemUsed: 1.1f}{mm} -{MemTotal: 1.1f}{mm}',
-                    measure_mem = 'G',
-                    foreground = color_fg,
-                    background = color_g3,
-                ),
-    
+                #widget.TextBox( text="󰍛", background=color_g3, foreground=blanco,fontsize=tamano_iconos, padding=6),
+                
+                # widget.Memory(
+                #         font="Hack Nerd Font Bold",
+                #     format = '{MemUsed: 1.1f}{mm} -{MemTotal: 1.1f}{mm}',
+                #     measure_mem = 'G',
+                #     foreground = color_fg,
+                #     background = color_g3,
+                # ),
                 
 
                 # Reloj
@@ -392,19 +392,14 @@ screens = [
             tamano_barra,
             background=color_barra,
             opacity=0.92,
-            border_width=[1, 0, 1, 0],  # Draw top and bottom borders
-            border_color=[color_0_5, color_0_5, color_0_5, color_0_5]  # Borders are magenta
+            border_width=[0, 0, 0, 0],  # Draw top and bottom borders
+            border_color=[color_0_5, color_0_5, color_0_5, color_0_5]
         ),
-
-        # Screen(top=bar.Bar([
-        #     widget.GroupBox(),    # display the current Group
-        # ], 30))
-
 
         # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
         # By default we handle these events delayed to already improve performance, however your system might still be struggling
         # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
-        # x11_drag_polling_rate = 60,
+        #x11_drag_polling_rate = 60,
     ),
 ]
 
