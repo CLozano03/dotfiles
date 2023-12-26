@@ -44,6 +44,9 @@ alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
+# Mostrar aliases en formato less/bat
+alias aliasn='alias | bat'
+
 # Comandos de git
 alias g='git'
 alias gs='git status'
@@ -60,20 +63,22 @@ alias gbrd='git branch -d'
 alias update='sudo pacman -Syu'
 alias updateyay='yay -Syu'
 
+# Apagar, reiniciar, suspender, hibernar
+alias pof='shutdown now'
+alias rb='sudo reboot now'
+alias susp='systemctl suspend'
+alias hib='systemctl hibernate'
 
 # Visor de pdf evince con open
 open() { evince "$@" > /dev/null 2>&1 & disown; }
 # Visor de imagenes  geeqie con view
 view() { geeqie "$@" > /dev/null 2>&1 & disown; }
-
 # Libreoffice con loff
 loff() { libreoffice "$@" > /dev/null 2>&1 & disown; }
 
-# Generador de contraseñas
+# Generarr una contraseña aleatoria
 alias genpasswd='echo `env LC_CTYPE=C tr -dc "a-zA-Z0-9-_\$\?" < /dev/urandom | head -c 20`'
 
 # Rickroll 😏
 alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
 
-# Mostrar aliases en formato less/bat
-alias aliasn='alias | bat'
