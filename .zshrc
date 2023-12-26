@@ -75,8 +75,8 @@ ZSH_THEME="agnoster"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git
-zsh-autosuggestions
-zsh-syntax-highlighting
+  zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -102,38 +102,34 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
- alias zshconfig="mate ~/.zshrc"
- alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias c="clear"
-alias clear="clear; neofetch"
-alias cat="bat"
-alias catn="command cat"
-alias open="evince"
-alias ls="lsd"
-alias scilab="scilab &"
-#alias matlab= "matlab &"
-alias nv="nvim"
-alias view="geeqie" 
+# =====Aliases=====
+ALIASES_DIR="$HOME/.config/zsh/aliases/"
 
+# Carga de aliases del archivo aliases.zsh
+if [ -f ""$ALIASES_DIR"private_aliases.zsh" ]; then 
+  source ""$ALIASES_DIR"private_aliases.zsh"
+fi
+source ""$ALIASES_DIR"aliases.zsh"          # Aliases generales PONER SIEMPRE EL ULTIMO
+
+# =====Fin Aliases=====
+# =====Shortcuts=====
+
+bindkey -s '^L' 'clear\n'     # Ctrl + L
+
+# =====Fin Shortcuts=====
+
+# Mutear sonidos de campana
 xset -b
-
-# Plugins 
-#plugins=(zsh-autosuggestions)
-#autoload -U compinit && compinit
-#source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-
-
-#plugins=(zsh-syntax-highlighting)
-
-
-
+# Cargar logo Arch en la terminal
 clear
+
+
+# Scilab en el path
 export PATH=$PATH:/home/cesar/.scilab-2024.0.0/bin
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+#source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+#[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+
+
