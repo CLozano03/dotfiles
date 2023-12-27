@@ -4,8 +4,9 @@
 
 # Except these folders
 !alacritty
+!lsd
 !rofi
 !qtile
 !neofetch
 !zsh
-./zsh/personal_aliases.zsh
+./zsh/private_aliases.zsh
