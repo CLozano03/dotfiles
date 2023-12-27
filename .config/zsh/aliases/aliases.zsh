@@ -12,7 +12,11 @@ alias qtconf='code ~/.config/qtile/config.py'
 # Actualizar configuración de zsh
 alias zshrc='source ~/.zshrc'
 
+# Cambiar ls por lsd y ajustar normales
 alias ls='lsd'
+alias lsn='command ls'
+alias lln='command ls -l'
+
 alias cat='bat --color=always'
 alias catn='command cat'
 alias c='clear'
