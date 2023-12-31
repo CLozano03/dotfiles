@@ -1,2 +1,11 @@
-#
-__pycache__
+# Ignore everything
+/*
+!.gitignore
+!.gitconfig
+!.xprofile
+
+# Except for these files and folders
+!.screenshots
+!.bashrc
+!.zshrc
+!.config
