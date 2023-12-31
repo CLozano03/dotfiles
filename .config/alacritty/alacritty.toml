@@ -37,7 +37,7 @@ background = "#000000"
 foreground = "#ffffff"
 
 [font]
-size = 8
+size = 9
 
 [font.normal]
 family = "monospace"
