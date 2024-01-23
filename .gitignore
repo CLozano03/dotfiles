@@ -3,6 +3,7 @@
 !.gitignore
 !.gitconfig
 !.xprofile
+!.xsettingsd
 
 # Except for these files and folders
 !.screenshots

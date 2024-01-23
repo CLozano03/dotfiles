@@ -8,9 +8,9 @@ fi
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
+export ZSH=$HOME/.oh-my-zsh
+export ZSH_CUSTOM=$ZSH/custom
+export XDG_CONFIG_HOME=$HOME/.config
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -66,9 +66,6 @@ ZSH_THEME="agnoster"
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -104,24 +101,23 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 
 # =====Aliases=====
-ALIASES_DIR="$HOME/.config/zsh/aliases/"
+ALIASES_DIR="$XDG_CONFIG_HOME/zsh/aliases/"
 
 # Carga de aliases del archivo aliases.zsh
 if [ -f ""$ALIASES_DIR"private_aliases.zsh" ]; then 
   source ""$ALIASES_DIR"private_aliases.zsh"
 fi
-source ""$ALIASES_DIR"aliases.zsh"          # Aliases generales PONER SIEMPRE EL ULTIMO
+source ""$ALIASES_DIR"general_aliases.zsh"          # Aliases generales PONER SIEMPRE EL ULTIMO
 
 # =====Fin Aliases=====
 # =====Shortcuts=====
-
 bindkey -s '^L' 'clear\n'     # Ctrl + L
-
 # =====Fin Shortcuts=====
 
 # Mutear sonidos de campana
 xset -b
-# Cargar logo Arch en la terminal
+
+# Cargar logo Arch en la terminal cuando se abre
 clear
 
 
@@ -132,4 +128,6 @@ export PATH=$PATH:/home/cesar/.scilab-2024.0.0/bin
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 #[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
+#No lineas duplicadas en historial
+setopt HIST_IGNORE_DUPS
 

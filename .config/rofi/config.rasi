@@ -126,5 +126,5 @@ configuration {
 	me-select-entry: "MousePrimary";
 	me-accept-entry: "MouseDPrimary";
 	me-accept-custom: "Control+MouseDPrimary";
-}@theme "./mytheme.rasi"
+}@theme "./my_theme.rasi"
 

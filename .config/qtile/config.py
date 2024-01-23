@@ -39,14 +39,13 @@ from libqtile.utils import guess_terminal
 
 dispositivo_red = "wlp0s20f3"
 mod = "mod4"
-terminal = "alacritty"
+terminal = guess_terminal()
 
 blanco = "#ffffff"
 negro = "#000000"
 
-color_0 = "#050909"  #Color de la barra
-color_0_5 = "#143a3a"  #Color de la barra
-color_1 = "#024343"
+color_0 = "#090909"  #Color de la barra
+color_1 = "#024040"
 color_2 = "#006262"
 color_3 = "#007575"
 color_4 = "#189090"
@@ -67,7 +66,7 @@ comando_bloqueo_pantalla = "i3lock"
 color_barra = color_0
 tamano_barra = 22
 
-tamano_iconos = 23
+tamano_iconos = 19
 color_activo = color_5 # Color de icono cuando esta activa la ventana
 color_inactivo = color_1
 color_fg = "#ffffff" # Color de icono cuando no esta activa la ventana
@@ -107,7 +106,7 @@ def triangulo(color_bg, color_fg):
         background=color_bg,
         foreground=color_fg,
         fontsize=35,
-        padding=-0.9,
+        padding=-1.5,
     )
 
 def icono(icono, color_bg, color_fg):
@@ -143,8 +142,7 @@ keys = [
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
-    # Unsplit = 1 window displayed, like Max layout, but still with
-    # multiple stack panes
+    # Unsplit = 1 window displayed, like Max layout, but still with multiple stack panes
     Key(
         [mod, "shift"],
         "Return",
@@ -176,7 +174,11 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
-    # Teclas de control de sistema
+    # Captura de pantalla
+    Key([mod], "s", lazy.spawn("scrot '%Y-%m-%d_%H:%M:%S_scrot.png' -e 'xclip -selection clipboard -t image/png -i $f && rm $f'"), desc="Capturar pantalla"),
+    Key([mod, "shift"], "s", lazy.spawn("scrot -s -e 'xclip -selection clipboard -t image/png -i $f && rm $f'"), desc="Recortar pantalla"),
+
+    #=====Teclas de control de sistema=====
     # Volumen
     Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%")),
     Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")),
@@ -195,8 +197,6 @@ keys = [
     Key([], "XF86Display", lazy.spawn("arandr")),
     #Key([], "XF86AudioMicMute", lazy.spawn("amixer set Capture toggle")),
 
-    Key([mod], "s", lazy.spawn("scrot")),
-    Key([mod, "shift"], "s", lazy.spawn("scrot -s")),
 
     #Key([], "XF86ScreenSaver", lazy.shutdown(), desc="Shutdown Qtile"),
 
@@ -291,23 +291,23 @@ screens = [
                 separador(4, color_barra),
                 widget.WindowName(
                     font="Hack Nerd Font Bold",
-                    foreground=color_borde_actual,
+                    foreground=color_barra,
                     background=color_barra,
                     padding=23,
                     font_size=tamano_iconos,
-
+                    max_chars=50,
+                    format='{state}{name}',
                 ),
 
                 #Iconos opciones
                 triangulo(color_barra, color_g1),
                 widget.Systray(
-                    padding=10, 
+                    padding=8, 
                     background=color_g1, 
                     foreground=blanco,
                     icon_size=20,
                 ),
 
-                
                 # ----Barra de estado red----
                 # separador(7, color_g1),
                 # triangulo(color_g1, color_g2),
@@ -358,17 +358,16 @@ screens = [
                     update_interval = 15,
                 ),
                 separador(5, color_g3),
-                #widget.TextBox( text="󰍛", background=color_g3, foreground=blanco,fontsize=tamano_iconos, padding=6),
+                # widget.TextBox( text="󰍛", background=color_g3, foreground=blanco,fontsize=tamano_iconos, padding=6),
                 
-                # widget.Memory(
-                #         font="Hack Nerd Font Bold",
-                #     format = '{MemUsed: 1.1f}{mm} -{MemTotal: 1.1f}{mm}',
-                #     measure_mem = 'G',
-                #     foreground = color_fg,
-                #     background = color_g3,
-                # ),
+                #  widget.Memory(
+                #      font="Monokai Nerd Font Bold",
+                #      format = '{MemUsed: 1.1f}{mm} -{MemTotal: 1.1f}{mm}',
+                #      measure_mem = 'G',
+                #      foreground = color_fg,
+                #      background = color_g3,
+                #  ),
                 
-
                 # Reloj
                 triangulo(color_g3, color_g4),
                 separador(4, color_g4),
@@ -391,9 +390,9 @@ screens = [
             ],
             tamano_barra,
             background=color_barra,
-            opacity=0.92,
+            opacity=0.95,
             border_width=[0, 0, 0, 0],  # Draw top and bottom borders
-            border_color=[color_0_5, color_0_5, color_0_5, color_0_5]
+            border_color=[color_1, color_1, color_1, color_1]
         ),
 
         # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
@@ -417,6 +416,8 @@ bring_front_click = False
 floats_kept_above = True
 cursor_warp = False
 floating_layout = layout.Floating(
+    border_focus=color_8,
+    border_width=3,
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,
@@ -454,4 +455,4 @@ wmname = "LG3D"
 def autostart():
     script = os.path.expanduser("/home/cesar/.config/qtile/autostart.sh")
     #subprocess.Popen(["xautolock", "-time", "10", "-locker", "i3lock"])
-    subprocess.run([script])
+    #subprocess.run([script])
