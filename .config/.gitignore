@@ -8,5 +8,6 @@
 !rofi
 !qtile
 !neofetch
+!picom
 !zsh
 ./zsh/private_aliases.zsh
