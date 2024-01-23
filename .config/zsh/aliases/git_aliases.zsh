@@ -7,8 +7,8 @@ alias gb="git branch --sort=committerdate"
 alias gco="git checkout"
 
 alias gc="git commit --verbose"
-alias gca="git commit --verbose --all --amend"
-alias gcan="git commit --verbose --all --no-edit --amend"
+alias gca="git commit --verbose --amend"
+alias gcan="git commit --verbose --no-edit --amend"
 
 alias gd="git diff"
 alias gdh="git diff HEAD"
