@@ -10,4 +10,7 @@
 !neofetch
 !picom
 !zsh
+!btop
+
+# Private Aliases are private
 ./zsh/private_aliases.zsh
