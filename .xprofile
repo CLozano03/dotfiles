@@ -15,7 +15,7 @@ else
 fi
 
 # Picom
-picom &
+picom -b &
 # Red
 nm-applet &
 # Keyboard

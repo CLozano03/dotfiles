@@ -131,3 +131,12 @@ export PATH=$PATH:/home/cesar/.scilab-2024.0.0/bin
 #No lineas duplicadas en historial
 setopt HIST_IGNORE_DUPS
 
+
+# @begin(97218204)@ - Do not edit these lines - added automatically!
+# You should customize CIAOPATH before this chunk if you place bundles in
+# places other than ~/.ciao
+if [ -x /home/cesar/.ciaoroot/v1.22.0-m7/build/bin/ciao-env ] ; then
+  eval "$(/home/cesar/.ciaoroot/v1.22.0-m7/build/bin/ciao-env --sh)"
+fi
+# @end(97218204)@ - End of automatically added lines.
+eval "$(zoxide init zsh)"
