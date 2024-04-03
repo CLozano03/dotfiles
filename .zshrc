@@ -11,41 +11,24 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export ZSH=$HOME/.oh-my-zsh
 export ZSH_CUSTOM=$ZSH/custom
 export XDG_CONFIG_HOME=$HOME/.config
-# Set name of the theme to load --- if set to "random", it will
+export ZSH_CONFIG=$XDG_CONFIG_HOME/zsh
+#Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+#ZSH_THEME="afowler" 
 ZSH_THEME="agnoster"
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+# Java version can be changed between 11 and 22
+export JAVA_VERSION=11
+export JAVA_HOME=/usr/lib/jvm/java-"$JAVA_VERSION"-openjdk
+export PATH=$JAVA_HOME/bin:$PATH
 
 # Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+#CASE_SENSITIVE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+#ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -58,32 +41,34 @@ ZSH_THEME="agnoster"
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git
-  zsh-autosuggestions
-  zsh-syntax-highlighting
+plugins=(
+	git
+	zsh-autosuggestions
+	zsh-syntax-highlighting
+	zsh-history-substring-search
 )
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+# Prompt configuration
+function dir_icon {
+	if [[ "$PWD" == "$HOME" ]]; then
+		echo "%B%F{black}%f%b"
+	else
+		echo "%B%F{cyan}%f%b"
+	fi
+}
 
-# export MANPATH="/usr/local/man:$MANPATH"
+function parse_git_branch {
+	local branch
+	branch=$(git symbolic-ref --short HEAD 2> /dev/null)
+	if [ -n "$branch" ]; then
+		echo " [$branch]"
+	fi
+}
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+#PROMPT='%F{cyan}󰣇%f %F{magenta}%n%f $(dir_icon) %F{red}%~%f%${vcs_info_msg_0_} %F{yellow}$(parse_git_branch)%f %(?.%B%F{green}.%F{red})%f%b '
+
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -101,17 +86,25 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 
 # =====Aliases=====
-ALIASES_DIR="$XDG_CONFIG_HOME/zsh/aliases/"
-
 # Carga de aliases del archivo aliases.zsh
-if [ -f ""$ALIASES_DIR"private_aliases.zsh" ]; then 
-  source ""$ALIASES_DIR"private_aliases.zsh"
+if [ -f ""$ZSH_CONFIG"/private_aliases.zsh" ]; then 
+  source ""$ZSH_CONFIG"/private_aliases.zsh" # Aliases privadoss
 fi
-source ""$ALIASES_DIR"general_aliases.zsh"          # Aliases generales PONER SIEMPRE EL ULTIMO
+source ""$ZSH_CONFIG"/aliases.zsh"          # Aliases generales cargar SIEMPRE EL ULTIMO enre todos los archivos de aliases
 
 # =====Fin Aliases=====
 # =====Shortcuts=====
 bindkey -s '^L' 'clear\n'     # Ctrl + L
+
+# Función para agregar sudo al principio de la línea actual
+add_sudo_prefix() {
+    LBUFFER="sudo $LBUFFER"
+    zle reset-prompt
+}
+
+# Asocia la función al atajo de teclado Ctrl+j
+zle -N add_sudo_prefix
+bindkey '^K' add_sudo_prefix
 # =====Fin Shortcuts=====
 
 # Mutear sonidos de campana
@@ -120,17 +113,11 @@ xset -b
 # Cargar logo Arch en la terminal cuando se abre
 clear
 
-
-# Scilab en el path
-export PATH=$PATH:/home/cesar/.scilab-2024.0.0/bin
-#source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-#[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
-
 #No lineas duplicadas en historial
 setopt HIST_IGNORE_DUPS
 
+# Cargar zoxide
+eval "$(zoxide init zsh)"2
 
 # @begin(97218204)@ - Do not edit these lines - added automatically!
 # You should customize CIAOPATH before this chunk if you place bundles in
@@ -139,4 +126,3 @@ if [ -x /home/cesar/.ciaoroot/v1.22.0-m7/build/bin/ciao-env ] ; then
   eval "$(/home/cesar/.ciaoroot/v1.22.0-m7/build/bin/ciao-env --sh)"
 fi
 # @end(97218204)@ - End of automatically added lines.
-eval "$(zoxide init zsh)"
