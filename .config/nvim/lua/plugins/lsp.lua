@@ -1,4 +1,4 @@
-return { } --[[ return {
+return {
 	{
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPost" },
@@ -197,4 +197,4 @@ return { } --[[ return {
 			},
 		},
 	},
-} ]]
+}
