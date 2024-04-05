@@ -1,12 +1,7 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+#!/bin/sh
 
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+# shortcut to this dotfiles path is $DOTFILES
+export DOTFILES="$HOME/dotfiles"
 
 export ZSH=$HOME/.oh-my-zsh
 export ZSH_CUSTOM=$ZSH/custom
@@ -19,10 +14,23 @@ export ZSH_CONFIG=$XDG_CONFIG_HOME/zsh
 #ZSH_THEME="afowler" 
 ZSH_THEME="agnoster"
 
+# Default editor
+export EDITOR='nvim'
+export VEDITOR='code'
+
 # Java version can be changed between 11 and 22
 export JAVA_VERSION=11
 export JAVA_HOME=/usr/lib/jvm/java-"$JAVA_VERSION"-openjdk
 export PATH=$JAVA_HOME/bin:$PATH
+
+# all of our zsh files
+typeset -U config_files
+#config_files=("$DOTFILES"/*/*.zsh)
+
+# Load config files
+#source "$DOTFILES"/.config/zsh/config.zsh
+
+unset config_files 
 
 # Uncomment the following line to use case-sensitive completion.
 #CASE_SENSITIVE="true"
@@ -53,7 +61,7 @@ source $ZSH/oh-my-zsh.sh
 # Prompt configuration
 function dir_icon {
 	if [[ "$PWD" == "$HOME" ]]; then
-		echo "%B%F{black}%f%b"
+		echo "%B%F{yellow}%f%b"
 	else
 		echo "%B%F{cyan}%f%b"
 	fi
@@ -67,7 +75,7 @@ function parse_git_branch {
 	fi
 }
 
-#PROMPT='%F{cyan}󰣇%f %F{magenta}%n%f $(dir_icon) %F{red}%~%f%${vcs_info_msg_0_} %F{yellow}$(parse_git_branch)%f %(?.%B%F{green}.%F{red})%f%b '
+PROMPT=' %F{cyan}󰣇%f %F{magenta}%n%f $(dir_icon) %F{red}%~%f%${vcs_info_msg_0_} %F{yellow}$(parse_git_branch)%f %(?.%B%F{green}.%F{red})%f%b '
 
 
 # Preferred editor for local and remote sessions
@@ -118,6 +126,9 @@ setopt HIST_IGNORE_DUPS
 
 # Cargar zoxide
 eval "$(zoxide init zsh)"2
+
+
+# ========= CIAOPATH ============
 
 # @begin(97218204)@ - Do not edit these lines - added automatically!
 # You should customize CIAOPATH before this chunk if you place bundles in
