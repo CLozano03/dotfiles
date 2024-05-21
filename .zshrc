@@ -11,15 +11,19 @@ export ZSH_CONFIG=$XDG_CONFIG_HOME/zsh
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="afowler" 
-ZSH_THEME="agnoster"
+ZSH_THEME="afowler" 
+#ZSH_THEME="agnoster"
+
+export CATALINA_HOME=/usr/share/tomcat9
+export AXIS2_HOME="$CATALINA_HOME"/webapps/axis2
+export PATH=$AXIS2_HOME/bin:$PATH
 
 # Default editor
 export EDITOR='nvim'
 export VEDITOR='code'
 
-# Java version can be changed between 11 and 22
-export JAVA_VERSION=11
+# Java version can be changed between 8, 11 and 22
+export JAVA_VERSION=8
 export JAVA_HOME=/usr/lib/jvm/java-"$JAVA_VERSION"-openjdk
 export PATH=$JAVA_HOME/bin:$PATH
 
@@ -35,8 +39,6 @@ unset config_files
 # Uncomment the following line to use case-sensitive completion.
 #CASE_SENSITIVE="true"
 
-# Uncomment the following line to enable command auto-correction.
-#ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -58,25 +60,6 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# Prompt configuration
-function dir_icon {
-	if [[ "$PWD" == "$HOME" ]]; then
-		echo "%B%F{yellow}%f%b"
-	else
-		echo "%B%F{cyan}%f%b"
-	fi
-}
-
-function parse_git_branch {
-	local branch
-	branch=$(git symbolic-ref --short HEAD 2> /dev/null)
-	if [ -n "$branch" ]; then
-		echo " [$branch]"
-	fi
-}
-
-PROMPT=' %F{cyan}󰣇%f %F{magenta}%n%f $(dir_icon) %F{red}%~%f%${vcs_info_msg_0_} %F{yellow}$(parse_git_branch)%f %(?.%B%F{green}.%F{red})%f%b '
-
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -93,14 +76,18 @@ PROMPT=' %F{cyan}󰣇%f %F{magenta}%n%f $(dir_icon) %F{red}%~%f%${vcs_info_msg_0
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
+# =====Prompt======
+# Load prompt configuration
+source ""$ZSH_CONFIG"/prompt.zsh"
+# ===End Prompt====
 # =====Aliases=====
-# Carga de aliases del archivo aliases.zsh
+# Load aliases from the following files
 if [ -f ""$ZSH_CONFIG"/private_aliases.zsh" ]; then 
-  source ""$ZSH_CONFIG"/private_aliases.zsh" # Aliases privadoss
+  source ""$ZSH_CONFIG"/private_aliases.zsh" # Private aliasees
 fi
-source ""$ZSH_CONFIG"/aliases.zsh"          # Aliases generales cargar SIEMPRE EL ULTIMO enre todos los archivos de aliases
-
-# =====Fin Aliases=====
+source ""$ZSH_CONFIG"/aliases.zsh"          # General aliases
+# =====End Aliases=====
+#
 # =====Shortcuts=====
 bindkey -s '^L' 'clear\n'     # Ctrl + L
 
@@ -113,13 +100,13 @@ add_sudo_prefix() {
 # Asocia la función al atajo de teclado Ctrl+j
 zle -N add_sudo_prefix
 bindkey '^K' add_sudo_prefix
-# =====Fin Shortcuts=====
+# =====End Shortcuts=====
 
 # Mutear sonidos de campana
 xset -b
 
-# Cargar logo Arch en la terminal cuando se abre
-clear
+# Cargar Fastfetch cuando se abre
+fastfetch
 
 #No lineas duplicadas en historial
 setopt HIST_IGNORE_DUPS
@@ -133,7 +120,10 @@ eval "$(zoxide init zsh)"2
 # @begin(97218204)@ - Do not edit these lines - added automatically!
 # You should customize CIAOPATH before this chunk if you place bundles in
 # places other than ~/.ciao
-if [ -x /home/cesar/.ciaoroot/v1.22.0-m7/build/bin/ciao-env ] ; then
-  eval "$(/home/cesar/.ciaoroot/v1.22.0-m7/build/bin/ciao-env --sh)"
+if [ -x /home/cesar/.ciaoroot/v1.23.0-m1/build/bin/ciao-env ] ; then
+  eval "$(/home/cesar/.ciaoroot/v1.23.0-m1/build/bin/ciao-env --sh)"
 fi
 # @end(97218204)@ - End of automatically added lines.
+
+# Created by `pipx` on 2024-04-15 13:52:09
+export PATH="$PATH:/home/cesar/.local/bin"
