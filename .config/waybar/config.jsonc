@@ -1,0 +1,197 @@
+{
+    // -------------------------------------------------------------------------
+    // Global configuration
+    // -------------------------------------------------------------------------
+    "layer": "top",
+    "position": "top",
+    "reload_style_on_change": true,
+    "margin-left": 40,
+    "margin-right": 40,
+    "margin-top": 5,
+    "margin-bottom": -8,
+
+    "height": 36,
+    "modules-left": [
+      "custom/archlogo",
+      "hyprland/workspaces",
+      "hyprland/submap"
+    ],
+    "modules-center": [
+      "hyprland/window"
+    ], 
+    "modules-right": [
+      "tray",
+      "custom/primary",
+      "custom/clipboard",
+      "network",
+      "backlight",
+      "pulseaudio",
+      "battery",
+      "clock"
+
+    ],
+    // -------------------------------------------------------------------------
+    // Modules
+    // -------------------------------------------------------------------------
+
+    /* ================= LEFT =================== */
+    "custom/archlogo": {
+        "format": "<span color=\"#1793d1\"></span> <span color=\"#777777\"></span>",
+        "on-click": "alacritty"
+    },
+
+    "hyprland/workspaces": {
+      "format": "{icon}",
+      "active-only": true,
+      "on-click": "activate",
+      "all-outputs": true,
+      /* "format-icons": {
+        "1": "<span color=\"#ff9a00\">󰈹</span>",
+        "2": "<span color=\"#0086ce\">󰨞</span>",
+        "3": "<span color=\"#f47765\">󰈔</span>",
+        "4": "<span color=\"#A3BE8C\"></span>",
+        "default": ""
+      }, */
+      "format-icons": {
+        "1": "󰈹",
+        "2": "",
+        "3": "󰨞",
+        "4": "󰈔",
+        "5": "",
+        "6": ""
+      },
+
+      "sort-by-number": true,
+
+      "persistent-workspaces": {
+        "*": 6
+        }
+    },
+
+    "hyprland/submap": {
+      "format": "{name}",
+      "on-scroll-up": "hyprctl dispatch submap e+1",
+      "on-scroll-down": "hyprctl dispatch submap e-1",
+      "show-special": false,
+      "ignore-workspaces": [
+        "(special:)?special:scratch_term"
+      ]
+    },
+
+    /* ================= CENTER =================== */
+    "hyprland/window": {
+      //"format": "{class}",
+      "icons": true,
+      "icon_size": 24
+    },
+  
+    /* ================= RIGHT =================== */
+    "network": {
+      "interval": 3,
+      "format-wifi": "   {essid}", // Icon: wifi
+      "format-ethernet": " {ifname}: {ipaddr}/{cidr}", // Icon: ethernet
+      "format-disconnected": "⚠ No internet",
+      "tooltip-format": "{ifname}: {ipaddr} (signal: {signalStrength}%)",
+      "on-click": "nm-connection-editor"
+    },
+    
+    "backlight": {
+      "format": "{icon}   {percent}%",
+      "interval": 2,
+      "on-scroll-up": "light -U 5",
+      "on-scroll-down": "light -A 5",
+      "format-icons": [
+        "", "󰃟", "󰃠"
+      ]
+    },
+
+    "pulseaudio": {
+      "scroll-step": 2,
+      "format": "{icon}   {volume}%",
+      "format-muted": "󰝟  Muted", // Icon: volume-mute
+      "format-icons": {
+        "headphones": "", // Icon: headphones
+        "handsfree": "", // Icon: headset
+        "headset": "󰂯", // Bluetooth
+        "phone": "", // Icon: phone
+        "portable": "", // Icon: phone
+        "car": "", // Icon: car
+        "default": [
+            "", "", ""
+        ]
+      },
+      "on-click": "pavucontrol",
+      "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+      "tooltip": true
+    },
+    
+    "battery": {
+      "interval": 5,
+      "states": {
+        "warning": 20,
+        "critical": 10
+      },
+      // Connected to AC
+      "format-charging": "{icon}   {capacity}% ", // Icon: bolt
+      // Not connected to AC
+      "format-discharging": "{icon}  {capacity}%",
+      "format-icons": {
+        "discharging":[
+          "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"
+        ],
+        "charging": [
+          "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉","󰂉", "󰂊", "󰂋", "󰂅"
+        ]
+      },
+      "tooltip": true
+    },
+    
+    "clock": {
+      "interval": 15,
+      "format": "󰥔   {:%H:%M - %a. %d %b}",
+      "tooltip-format": "\n<span size='9pt' font='WenQuanYi Zen Hei Mono'>{calendar}</span>",
+      "calendar": {
+        "mode"          : "year",
+        "mode-mon-col"  : 3,
+        "weeks-pos"     : "right",
+        "on-scroll"     : 1,
+        "format": {
+          "months":     "<span color='#ffead3'><b>{}</b></span>",
+          "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+          "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+          "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+          "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+          }
+        },
+        "actions":  {
+          "on-click-right": "mode",
+          "on-click-forward": "tz_up",
+          "on-click-backward": "tz_down"
+          }
+    }
+    // "clock": {
+    //     "format": "{:%H:%M} 󰥔 ",
+    //     "format-alt": "{:L%A, %B %d, %Y (%R)}  ",
+    //     "tooltip-format": "\n<span size='9pt' font='WenQuanYi Zen Hei Mono'>{calendar}</span>",
+    //     "calendar": {
+    //                 "mode"          : "year",
+    //                 "mode-mon-col"  : 3,
+    //                 "weeks-pos"     : "right",
+    //                 "on-scroll"     : 1,
+    //                 "format": {
+    //                             "months":     "<span color='#ffead3'><b>{}</b></span>",
+    //                             "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+    //                             "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+    //                             "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+    //                             "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+    //                             }
+    //                 },
+    //     "actions":  {
+    //                 "on-click-right": "mode",
+    //                 "on-click-forward": "tz_up",
+    //                 "on-click-backward": "tz_down",
+    //                 "on-scroll-up": "shift_up",
+    //                 "on-scroll-down": "shift_down"
+    //                 }
+    // },
+  }
