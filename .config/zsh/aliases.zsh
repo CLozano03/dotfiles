@@ -5,14 +5,18 @@
 alias pdw="pwd"
 alias chomd="chmod" 
 
-# config files edition
+# Edit config files
 alias zshconf=""$EDITOR"  "$HOME"/.zshrc"
 alias ohmyzsh=""$EDITOR" "$HOME"/.oh-my-zsh"
 alias qtconf="$EDITOR "$XDG_CONFIG_HOME"/qtile/config.py"
 alias alaconf=""$EDITOR"  "$XDG_CONFIG_HOME"/alacritty/alacritty.toml"
+alias ffconf=""$EDITOR" "$XDG_CONFIG_HOME"/fastfetch/config.jsonc"
+alias neoconf=""$EDITOR" "$XDG_CONFIG_HOME"/neofetch/config.conf"
 alias piconf=""$EDITOR"  "$XDG_CONFIG_HOME"/picom/picom.conf"
-alias aliasconf=""$EDITOR" "$XDG_CONFIG_HOME"/zsh//aliases.zsh"
-
+alias aliasconf=""$EDITOR" "$XDG_CONFIG_HOME"/zsh/aliases.zsh"
+#alias greetconf="sudo "$EDITOR" /etc/lightdm/lightdm.conf"
+alias hyprconf=""$VEDITOR" "$HOME"/.config/hypr"
+alias barconf=""$VEDITOR" "$HOME"/.config/waybar"
 # Update zsh configuration
 alias zshrc="source ~/.zshrc"
 
@@ -28,13 +32,19 @@ alias cdi="zi" # Buscar un directorio
 
 alias cat="bat --color=always"
 alias catn="command cat"
+alias catl="less -r"
 alias c="clear"
 alias v="nvim"
+alias edit="code ." # Open VSCode in the current directory
 alias em="emacs -nw"
+alias emacs="emacsclient -c -a 'emacs'"
 alias echo="echo -e"
+alias neo="neofetch"
+alias htop="btop"
+alias gparted="sudo -E gparted"
 
 # Show NEOFETCH when clearing terminal
-alias clear="clear && neofetch"
+#alias clear="clear && neofetch"
 
 # Colorize grep output (chachi for log files)
 alias grep="grep --color=auto"
@@ -60,10 +70,15 @@ alias .5="cd ../../../../.."
 
 # Show all aliases in less/bat format
 alias catalias="alias | bat"
+alias aliasn="catalias"
 
 # Update system
 alias update="sudo pacman -Syu"
 alias updateyay="yay -Syu"
+
+#Instaling
+install(){sudo pacman -S "$@" }
+installyay(){ yay -S "$@" }
 
 # Pdf evince with 'open'
 open() { evince "$@" > /dev/null 2>&1 & disown; }
@@ -83,38 +98,38 @@ alias genpasswd="echo `env LC_CTYPE=C tr -dc "a-zA-Z0-9-_\$\?" < /dev/urandom | 
 # Rickroll 😏
 alias rr="curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | sh"
 
-# =========== Git aliases ================
-alias ga="git add"
-alias gaa="git add --all"
+# # =========== Git aliases ================
+# alias ga="git add"
+# alias gaa="git add --all"
 
-alias gb="git branch --sort=committerdate"
+# alias gb="git branch --sort=committerdate"
 
-alias gco="git checkout"
+# alias gco="git checkout"
 
-alias gc="git commit --verbose"
-alias gca="git commit --verbose --amend"
-alias gcan="git commit --verbose --no-edit --amend"
+# alias gc="git commit --verbose"
+# alias gca="git commit --verbose --amend"
+# alias gcan="git commit --verbose --no-edit --amend"
 
-alias gd="git diff"
-alias gdh="git diff HEAD"
-alias gdca="git diff --cached"
-alias gds="git diff --staged"
+# alias gd="git diff"
+# alias gdh="git diff HEAD"
+# alias gdca="git diff --cached"
+# alias gds="git diff --staged"
 
-alias grb="git rebase"
-alias grba="git rebase --abort"
-alias grbc="git rebase --continue"
-alias grbi="git rebase --interactive"
+# alias grb="git rebase"
+# alias grba="git rebase --abort"
+# alias grbc="git rebase --continue"
+# alias grbi="git rebase --interactive"
 
-alias grst="git restore --staged"
+# alias grst="git restore --staged"
 
-alias gsh="git show"
+# alias gsh="git show"
 
-alias gst="git status"
+# alias gst="git status"
 
-alias gstl="git stash list"
-alias gsta="git stash push"
-alias gstp="git stash pop"
+# alias gstl="git stash list"
+# alias gsta="git stash push"
+# alias gstp="git stash pop"
 
-alias gsw="git switch"
-alias gswc="git switch --create"
-# ===========Fin git aliases ================
+# alias gsw="git switch"
+# alias gswc="git switch --create"
+# # ===========Fin git aliases ================
