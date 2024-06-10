@@ -1,1 +1,0 @@
-# pendiente de hacer readme con comandos
