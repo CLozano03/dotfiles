@@ -1,5 +1,8 @@
 #!/bin/sh
 
+sudo pacman -Syu --noconfirm
+
+sudo pacman -S figlet --noconfirm
 figlet zsh install
 
 #Installing all stuff
