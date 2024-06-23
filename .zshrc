@@ -7,6 +7,8 @@ export ZSH_CUSTOM=$ZSH/custom
 export XDG_CONFIG_HOME=$HOME/.config
 export ZSH_CONFIG=$XDG_CONFIG_HOME/zsh
 
+export PATH="$PATH:/home/cesar/.local/bin"
+
 source ""$ZSH_CONFIG"/env.zsh"
 
 # Directory to store zinit configuration
@@ -20,36 +22,40 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 zinit light Aloxaf/fzf-tab
 zinit snippet OMZP::git
-zinit snippet OMZP::sudo
+#zinit snippet OMZP::sudo
 zinit snippet OMZP::archlinux
 zinit snippet OMZP::command-not-found
 
-autoload -Uz compinit && compinit
+# Loading autocompletion
+autoload -Uz compinit && compinit -d ~/.zcompdump
 
 zinit cdreplay -q # To make use of `cd -<TAB>` to navigate to recently visited directories
 
-source "$ZSH"/oh-my-zsh.sh
-source ""$ZSH_CONFIG"/config.zsh"
-source ""$ZSH_CONFIG"/prompt.zsh"
-
 # =====Aliases=====
-# Load aliases from the following files
 if [ -f ""$ZSH_CONFIG"/private_aliases.zsh" ]; then 
   source ""$ZSH_CONFIG"/private_aliases.zsh" # Private aliasees
 fi
 source ""$ZSH_CONFIG"/aliases.zsh"          # General aliases
-# =====End Aliases=====
 
-# Cargar Fastfetch cuando se abre
-fastfetch
+source ""$ZSH_CONFIG"/config.zsh"
 
-eval "$(zoxide init zsh)"
-eval "$(fzf --zsh)"
+unalias zi 2> /dev/null
+eval "$(zoxide init zsh)" # zoxide for better cd navigation
+#eval "$(fzf --zsh)" # fuzzyfinder
 eval "$(oh-my-posh init zsh --config $ZSH_CONFIG/ohmyposh/zen.toml)"
-# Created by `pipx` on 2024-04-15 13:52:09
-export PATH="$PATH:/home/cesar/.local/bin"
 
 if [ -n "$DBUS_SESSION_BUS_ADDRESS" ]; then
     dbus-update-activation-environment --all
 fi
 
+
+# Load fastfetch when zsh
+fastfetch
+
+#if [[ -z "$TMUX" ]]; then
+#  tmux new-session -A -s main
+#fi
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
