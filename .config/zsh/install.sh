@@ -2,12 +2,11 @@
 
 figlet zsh install
 
-#sudo pacman -Syu --nocomfirm
-
-sudo pacman -S zsh --noconfirm
-chsh -s $(which zsh) #Change default SHELL to zsh
-
+#Installing all stuff
+sudo pacman -S zsh zoxide fzf fastfetch --noconfirm
 yay -S oh-my-posh --noconfirm
+
+chsh -s $(which zsh) # Change default SHELL to zsh
 
 zsh_config_dir="~/.config/zsh"
 
@@ -20,5 +19,5 @@ dirname_install="dotfiles_install"
 git clone https://github.com/CLozano03/dotfiles "$dirname_install"
 
 cp "$dirname_install"/.zshrc ~/.zshrc
-cp "$dirname_install"/.config/zsh/* "$zsh_config_dir"
+cp -r "$dirname_install"/.config/zsh/* "$zsh_config_dir"
 rm -rf "$dirname_install"
