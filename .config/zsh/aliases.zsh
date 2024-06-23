@@ -20,9 +20,16 @@ alias barconf=""$VEDITOR" "$HOME"/.config/waybar"
 # Update zsh configuration
 alias zshrc="source ~/.zshrc"
 
-# lsd instead of ls and some aliases
-alias ls="lsd"
-alias lsn="command ls"
+# bat
+alias cat='bat'
+alias catn='bat --style=plain'
+alias catnp='bat --style=plain --paging=never'
+# ls
+alias ll='lsd -lh --group-dirs=first'
+alias la='lsd -a --group-dirs=first'
+alias l='lsd --group-dirs=first'
+alias lla='lsd -lha --group-dirs=first'
+alias ls='lsd --group-dirs=first'
 alias lln="command ls -l"
 alias lt="lsd --total-size -l" # Show total size of each directory. Takes some time 
 
@@ -30,9 +37,6 @@ alias lt="lsd --total-size -l" # Show total size of each directory. Takes some t
 alias cd="z"
 alias cdi="zi" # Buscar un directorio
 
-alias cat="bat --color=always"
-alias catn="command cat"
-alias catl="less -r"
 alias c="clear"
 alias v="nvim"
 alias edit="code ." # Open VSCode in the current directory
@@ -42,7 +46,7 @@ alias echo="echo -e"
 alias neo="neofetch"
 alias htop="btop"
 alias gparted="sudo -E gparted"
-
+alias :q="exit"
 # Show NEOFETCH when clearing terminal
 #alias clear="clear && neofetch"
 
@@ -92,44 +96,9 @@ alias pof="shutdown now"
 alias rb="reboot"
 alias susp="systemctl suspend"
 
-# Generate random passwd
-alias genpasswd="echo `env LC_CTYPE=C tr -dc "a-zA-Z0-9-_\$\?" < /dev/urandom | head -c 20`"
+# Generate random passwd from a length
+source "$ZSH_CONFIG"/genpasswd.sh
 
 # Rickroll 😏
-alias rr="curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | sh"
+alias rr="curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | sed 's/has?/has/g' | sh"
 
-# # =========== Git aliases ================
-# alias ga="git add"
-# alias gaa="git add --all"
-
-# alias gb="git branch --sort=committerdate"
-
-# alias gco="git checkout"
-
-# alias gc="git commit --verbose"
-# alias gca="git commit --verbose --amend"
-# alias gcan="git commit --verbose --no-edit --amend"
-
-# alias gd="git diff"
-# alias gdh="git diff HEAD"
-# alias gdca="git diff --cached"
-# alias gds="git diff --staged"
-
-# alias grb="git rebase"
-# alias grba="git rebase --abort"
-# alias grbc="git rebase --continue"
-# alias grbi="git rebase --interactive"
-
-# alias grst="git restore --staged"
-
-# alias gsh="git show"
-
-# alias gst="git status"
-
-# alias gstl="git stash list"
-# alias gsta="git stash push"
-# alias gstp="git stash pop"
-
-# alias gsw="git switch"
-# alias gswc="git switch --create"
-# # ===========Fin git aliases ================
