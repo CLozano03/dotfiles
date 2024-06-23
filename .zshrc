@@ -22,7 +22,6 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 zinit light Aloxaf/fzf-tab
 zinit snippet OMZP::git
-#zinit snippet OMZP::sudo
 zinit snippet OMZP::archlinux
 zinit snippet OMZP::command-not-found
 
@@ -41,7 +40,7 @@ source ""$ZSH_CONFIG"/config.zsh"
 
 unalias zi 2> /dev/null
 eval "$(zoxide init zsh)" # zoxide for better cd navigation
-#eval "$(fzf --zsh)" # fuzzyfinder
+eval "$(fzf --zsh)" # fuzzyfinder
 eval "$(oh-my-posh init zsh --config $ZSH_CONFIG/ohmyposh/zen.toml)"
 
 if [ -n "$DBUS_SESSION_BUS_ADDRESS" ]; then
