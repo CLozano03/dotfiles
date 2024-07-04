@@ -2,17 +2,17 @@
 
 sudo pacman -Syu --noconfirm 
 
-sudo pacman -S yay figlet --noconfirm
+sudo pacman -S figlet --noconfirm
 clear 
-figlet zsh install
+figlet zsh install && sleep 1
 
 #Installing all stuff
-sudo pacman -S yay zsh zoxide fzf fastfetch --noconfirm
+sudo pacman -S zsh zoxide fzf fastfetch --noconfirm
 yay -S oh-my-posh --noconfirm
 
 chsh -s $(which zsh) # Change default SHELL to zsh
 
-zsh_config_dir="~/.config/zsh"
+zsh_config_dir="$HOME/.config/zsh"
 
 if [[ ! -d "$zsh_config_dir" ]]; then
   mkdir -v -p "$zsh_config_dir"
