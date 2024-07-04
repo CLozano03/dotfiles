@@ -10,7 +10,9 @@ figlet zsh install && sleep 1
 sudo pacman -S zsh zoxide fzf fastfetch --noconfirm
 yay -S oh-my-posh --noconfirm
 
-chsh -s $(which zsh) # Change default SHELL to zsh
+# Change default SHELL to zsh
+username=$(whoami)
+sudo chsh -s $(which zsh) $username 
 
 zsh_config_dir="$HOME/.config/zsh"
 
