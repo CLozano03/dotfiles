@@ -1,10 +1,10 @@
 <div align="center">
-    <h2>Mi zsh config</h2>
+    <h1>Mi zsh config</h1>
 </div>
 
 This is my Shell configuration. I use `Zsh` because it belongs to POSIX and is highly customizable.
 
-# Zsh Configuration
+## Zsh plugins
 
 I use `zinit` to manage plugins in my Zsh configuration, significantly enhancing productivity and the command-line experience. Below are the plugins I use and their functionalities:
 
