@@ -24,6 +24,6 @@ dirname_install="/tmp/dotfiles_install"
 
 git clone https://github.com/CLozano03/dotfiles "$dirname_install"
 
-cp -v "$dirname_install"/.zshrc ~/.zshrc
+cp -v "$dirname_install"/.zshrc $HOME/.zshrc
 cp -v -r "$dirname_install"/.config/zsh/* "$zsh_config_dir"
 rm -v -rf "$dirname_install"

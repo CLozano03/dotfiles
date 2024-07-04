@@ -73,7 +73,7 @@ alias .4="cd ../../../.."
 alias .5="cd ../../../../.."
 
 # Show all aliases in less/bat format
-alias catalias="alias | bat"
+alias catalias="alias | cat"
 alias aliasn="catalias"
 
 # Update system

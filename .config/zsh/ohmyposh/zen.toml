@@ -68,7 +68,7 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
     template = ' $'#'❯'
 
 [transient_prompt]
-  template = '$ '#'❯ '
+  template = ' $ '#'❯ '
   background = 'transparent'
    foreground_templates = [
     "{{if gt .Code 0}}red{{end}}",
