@@ -13,14 +13,14 @@ case $arg1 in
     1)
         grim -g "$(slurp)" "$DIR$NAME"
         command cat "$DIR$NAME" | wl-copy
-        #notify-send "Screenshot created and copied to clipboard" "Mode: Selected area"
+        notify-send "Screenshot created and copied to clipboard" "Mode: Selected area"
         swappy  -f "$DIR$NAME"
     ;;
     2)
         sleep 0.6
         grim "$DIR$NAME" 
         command cat "$DIR$NAME" | wl-copy
-        #notify-send "Screenshot created and copied to clipboard" "Mode: Fullscreen"
+        notify-send "Screenshot created and copied to clipboard" "Mode: Fullscreen"
         swappy -f "$DIR$NAME"
     ;;
 esac
