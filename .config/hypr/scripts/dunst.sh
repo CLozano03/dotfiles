@@ -1,8 +1,9 @@
 #!/bin/sh
 
-killall dunst && dunst &
+killall dunst 
 
 if [ $? == 0 ]; then
+    dunst &
     notify-send "Dunst restarted"
 else
     dunst &
