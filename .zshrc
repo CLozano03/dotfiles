@@ -10,6 +10,7 @@ export ZSH_CONFIG=$XDG_CONFIG_HOME/zsh
 export PATH="$PATH:/home/cesar/.local/bin"
 
 source ""$ZSH_CONFIG"/env.zsh"
+source ""$ZSH_CONFIG"/config.zsh"
 
 # Directory to store zinit configuration
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -36,16 +37,15 @@ if [ -f ""$ZSH_CONFIG"/private_aliases.zsh" ]; then
 fi
 source ""$ZSH_CONFIG"/aliases.zsh"          # General aliases
 
-source ""$ZSH_CONFIG"/config.zsh"
 
 unalias zi 2> /dev/null
 eval "$(zoxide init zsh)" # zoxide for better cd navigation
 eval "$(fzf --zsh)" # fuzzyfinder
 eval "$(oh-my-posh init zsh --config $ZSH_CONFIG/ohmyposh/zen.toml)"
 
-if [ -n "$DBUS_SESSION_BUS_ADDRESS" ]; then
-    dbus-update-activation-environment --all
-fi
+# if [ -n "$DBUS_SESSION_BUS_ADDRESS" ]; then
+#     dbus-update-activation-environment --all
+# fi
 
 
 # Load fastfetch when zsh
@@ -55,6 +55,6 @@ fastfetch
 #  tmux new-session -A -s main
 #fi
 
-export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.config/nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
