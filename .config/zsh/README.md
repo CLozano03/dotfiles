@@ -18,7 +18,7 @@ These plugins are loaded via `zinit` in my `.zshrc` file, ensuring a robust and 
 
 ## Install 
 
-Dependencies: `yay`, `git`
+Dependencies: `git`
 
 
 For installing, just run this command and it will be ready for use:
@@ -26,6 +26,8 @@ For installing, just run this command and it will be ready for use:
 ```
 curl https://raw.githubusercontent.com/CLozano03/dotfiles/main/.config/zsh/install.sh | sh && clear && source ~/.zshrc
 ```
+
+After instalation, you may close terminal window and reopen it. Zsh plugins will automatically install.
 
 ## Keybindings
 
