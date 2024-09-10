@@ -3,7 +3,9 @@
 sudo pacman -Syu --noconfirm
 
 #Install yay if it is not installed yet
-if [[ ! pacman -Q yay &> /dev/null ]]; then
+pacman -Q yay &> /dev/null
+
+if [[ ! $? == 0 ]]; then
   pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay-bin.git && cd yay-bin && makepkg -si;
 else echo "==> Yay instaled"; fi
 
