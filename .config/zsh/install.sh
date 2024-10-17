@@ -14,12 +14,11 @@ clear
 figlet zsh install && sleep 1
 
 #Installing all stuff
-sudo pacman -S zsh zoxide fzf fastfetch --noconfirm
+sudo pacman -S zsh zoxide fzf fastfetch lsd bat --noconfirm
 yay -S oh-my-posh --noconfirm
 
 # Change default SHELL to zsh
-username=$(whoami)
-sudo chsh -s $(which zsh) $username 
+sudo chsh -s $(which zsh) $(whoami)
 
 zsh_config_dir="$HOME/.config/zsh"
 
@@ -31,9 +30,9 @@ dirname_install="/tmp/dotfiles_install"
 
 git clone https://github.com/CLozano03/dotfiles "$dirname_install" -q 
 
-cp -v "$dirname_install"/.zshrc $HOME/.zshrc
-cp -v -r "$dirname_install"/.config/zsh/* "$zsh_config_dir"
-echo "==> \tDeleting aux directory for instalation" && sleep 0.5 && rm -rf "$dirname_install" 
-echo "==> \tZsh configuration ready for use. Close your terminal and reopen it for installing all the plugins"
+echo -e "  ==>  Copying ~/.zshrc..." && sleep 0.5 && cp "$dirname_install"/.zshrc $HOME/.zshrc
+echo -e "  ==>  Copying zsh config in "$zsh_config_dir"..." && sleep 0.5 && cp -r "$dirname_install"/.config/zsh/* "$zsh_config_dir"
+echo -e "  ==>  Deleting aux directory for instalation" && sleep 0.5 && rm -rf "$dirname_install" 
+echo -e "\n  ==>  Zsh configuration ready for use. Close your terminal and reopen it for installing all the plugins"
 
 exit 0
