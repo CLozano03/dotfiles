@@ -1,6 +1,6 @@
 #!/bin/sh
 
-$file="~/.config/hypr/conf/var.conf"
+file="$HOME/.config/hypr/conf/var.conf"
 term=$(cat $file | grep 'terminal' | awk '{print $NF}')
 
 echo $term

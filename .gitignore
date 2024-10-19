@@ -1,12 +1,16 @@
 # Ignore everything
 /*
-!.gitignore
 !.gitconfig
-!.xprofile
-!.xsettingsd
 
 # Except for these files and folders
 !.screenshots
 !.bashrc
 !.zshrc
 !.config
+
+# Always ignore:
+*.log
+__pychache__/
+
+# Concrete files to ignore
+
