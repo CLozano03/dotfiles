@@ -1,6 +1,6 @@
 # Default editor
 export EDITOR='/usr/bin/nvim'
-export VEDITOR='code'
+export VEDITOR='/usr/bin/code'
 
 #Language in date
 export LANG=es_ES.UTF-8
@@ -9,3 +9,6 @@ export LANG=es_ES.UTF-8
 export JAVA_VERSION=11
 export JAVA_HOME=/usr/lib/jvm/java-"$JAVA_VERSION"-openjdk
 export PATH=$JAVA_HOME/bin:$PATH
+
+export ROCKU=/usr/share/wordlists/rockyou.txt
+export TERM=alacritty
