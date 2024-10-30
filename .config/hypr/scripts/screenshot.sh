@@ -11,7 +11,8 @@ fi
 
 case $arg1 in
     1)
-        grim -g "$(slurp)" "$DIR$NAME"
+        slurp | grim -g - "$DIR$NAME"
+    
         if [[ $? -eq 0 ]]; then
             command cat "$DIR$NAME" | wl-copy
             notify-send "Screenshot created and copied to clipboard" "Mode: Selected area"
