@@ -6,12 +6,14 @@
 !alacritty
 !lsd
 !rofi
-!qtile
-!nvim
 !neofetch
 !picom
 !zsh
 !btop
+!hypr
 
 # Private Aliases are private
 ./zsh/private_aliases.zsh
+
+# Dont follow hyprpaper.conf 
+./hypr/hyprpaper.conf
