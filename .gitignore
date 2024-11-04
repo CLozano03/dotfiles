@@ -1,16 +1,12 @@
 # Ignore everything
 /*
-!.gitconfig
 
 # Except for these files and folders
-!.screenshots
-!.bashrc
+!.wallpapers
 !.zshrc
 !.config
 
 # Always ignore:
 *.log
 __pychache__/
-
-# Concrete files to ignore
 

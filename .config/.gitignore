@@ -6,11 +6,12 @@
 !alacritty
 !lsd
 !rofi
-!neofetch
-!picom
+!fastfetch
 !zsh
 !btop
 !hypr
+!waybar
+!waypaper
 
 # Private Aliases are private
 ./zsh/private_aliases.zsh
