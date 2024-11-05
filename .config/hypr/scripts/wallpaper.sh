@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [ -z $XDG_CONFIG_HOME ]; then
+    mkdir -p $HOME/.config
+    export $XDG_CONFIG_HOME=$HOME/.config
+fi
+
 # Dirs
 wallpaper_dir="$HOME/Pictures/wallpapers"
 cache_dir="$HOME/.cache/wallpapers"
@@ -17,16 +22,28 @@ if [ ! -d $cache_dir ]; then mkdir -p $cache_dir; fi
 # Create folder with generated versions if not exists
 if [ ! -d $generated_versions ]; then mkdir -p $generated_versions; fi
 
+# If there isnt wallpaper in cache select a random one
+if [[ ! -f "$cache_file" || ! -s "$cache_file" ]]; then
+
+    random_image=$(find $wallpaper_dir -type f -name "*.jpg" | shuf -n 1)
+    # If there isnt wallpapers end program
+    if [ -z $random_image ]; then 
+        echo "There is not wallpaper in '$wallpaper_dir': $wallpaper_dir"
+        echo "==> Exiting..."
+        exit 1
+    fi
+
+    echo ":: Setting wallpaper with random image"
+    echo "$random_image" > "$cache_file"
+fi
+
+
 # ----------------------------------------------------- 
 # Get selected wallpaper
 # ----------------------------------------------------- 
 
-if [ -z $1 ] ;then
-    if [ -f $cache_file ] ;then
-        wallpaper=$(cat $cache_file)
-    else
-        wallpaper=$default_wallpaper
-    fi
+if [[ -z $1 || $1 == "init" ]] ;then
+    wallpaper=$(cat $cache_file)
 else
     wallpaper=$1
 fi
@@ -52,44 +69,22 @@ wal -q -i $wallpaper
 # source "$cache_dir/wal/colors.sh"
 
 # ----------------------------------------------------- 
-# Wallpaper Effects
+# Write hyprpaper.conf
 # -----------------------------------------------------
-
-if [ -f $HOME/dotfiles/.settings/wallpaper-effect.sh ] ;then
-    effect=$(cat $HOME/dotfiles/.settings/wallpaper-effect.sh)
-    if [ ! "$effect" == "off" ] ;then
-        used_wallpaper=$generated_versions/$effect-$wallpaper_filename
-        if [ -f $generated_versions/$effect-$wallpaper_filename ] && [ "$force_generate" == "0" ] && [ "$use_cache" == "1" ] ;then
-            echo ":: Use cached wallpaper $effect-$wallpaper_filename"
-        else
-            echo ":: Generate new cached wallpaper $effect-$wallpaper_filename with effect $effect"
-            dunstify "Using wallpaper effect $effect..." "with image $wallpaper_filename" -h int:value:10 -h string:x-dunst-stack-tag:wallpaper
-            source $HOME/dotfiles/hypr/effects/wallpaper/$effect
-        fi
-        echo ":: Loading wallpaper $generated_versions/$effect-$wallpaper_filename with effect $effect"
-    else
-        echo ":: Wallpaper effect is set to off"
-    fi
+if [[ $1 == "init" ]]; then
+    echo ":: Setting wallpaper with $used_wallpaper"
+    killall -e hyprpaper & > /dev/null 2<&1
+    sleep 1; 
+    wal_tpl=$(cat $XDG_CONFIG_HOME/hypr/hyprpaper.tpl)
+    output=${wal_tpl//WALLPAPER/$used_wallpaper}
+    echo "$output" > $XDG_CONFIG_HOME/hypr/hyprpaper.conf
+    hyprpaper & > /dev/null 2>&1
 fi
 
 # ----------------------------------------------------- 
 # Reload Waybar
 # -----------------------------------------------------
 sh ~/dotfiles/waybar/launch.sh &> /dev/null
-
-# ----------------------------------------------------- 
-# Created blurred wallpaper
-# -----------------------------------------------------
-
-echo ":: Generate new cached wallpaper blur-$blur-$wallpaper_filename with blur $blur"
-magick $wallpaper -resize 75% $blurred_wallpaper
-echo ":: Resized to 75%"
-if [ ! "$blur" == "0x0" ] ;then
-    magick $blurred_wallpaper -blur $blur $blurred_wallpaper
-    cp $blurred_wallpaper $generated_versions/blur-$blur-$wallpaper_filename.png
-    echo ":: Blurred"
-fi
-cp $generated_versions/blur-$blur-$wallpaper_filename.png $blurred_wallpaper
 
 # ----------------------------------------------------- 
 # Create rasi file
