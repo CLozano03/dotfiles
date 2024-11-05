@@ -9,7 +9,6 @@ export ZSH_CONFIG=$XDG_CONFIG_HOME/zsh
 
 export PATH="$PATH:/home/cesar/.local/bin"
 
-source ""$ZSH_CONFIG"/env.zsh"
 source ""$ZSH_CONFIG"/config.zsh"
 
 # Directory to store zinit configuration

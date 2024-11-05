@@ -6,17 +6,17 @@ alias pdw="pwd"
 alias chomd="chmod" 
 
 # Edit config files
-alias zshconf=""$EDITOR"  "$HOME"/.zshrc"
+alias zshconf=""$EDITOR" "$HOME"/.zshrc"
 alias ohmyzsh=""$EDITOR" "$HOME"/.oh-my-zsh"
-alias qtconf="$EDITOR "$XDG_CONFIG_HOME"/qtile/config.py"
-alias alaconf=""$EDITOR"  "$XDG_CONFIG_HOME"/alacritty/alacritty.toml"
+alias alaconf=""$EDITOR" "$XDG_CONFIG_HOME"/alacritty/alacritty.toml"
+alias kittyconf=""$EDITOR" "$XDG_CONFIG_HOME"/kitty/kitty.conf"
 alias ffconf=""$EDITOR" "$XDG_CONFIG_HOME"/fastfetch/config.jsonc"
 alias neoconf=""$EDITOR" "$XDG_CONFIG_HOME"/neofetch/config.conf"
-alias piconf=""$EDITOR"  "$XDG_CONFIG_HOME"/picom/picom.conf"
 alias aliasconf=""$EDITOR" "$XDG_CONFIG_HOME"/zsh/aliases.zsh"
 #alias greetconf="sudo "$EDITOR" /etc/lightdm/lightdm.conf"
 alias hyprconf=""$VEDITOR" "$HOME"/.config/hypr"
 alias barconf=""$VEDITOR" "$HOME"/.config/waybar"
+
 # Update zsh configuration
 alias zshrc="source ~/.zshrc"
 
@@ -24,6 +24,7 @@ alias zshrc="source ~/.zshrc"
 alias cat='bat'
 alias catn='bat --style=plain'
 alias catnp='bat --style=plain --paging=never'
+
 # ls
 alias ll='lsd -lh --group-dirs=first'
 alias la='lsd -a --group-dirs=first'
@@ -47,8 +48,9 @@ alias neo="neofetch"
 alias htop="btop"
 alias gparted="sudo -E gparted"
 alias :q="exit"
+alias cppath="pwd | wl-copy"
+
 # Show NEOFETCH when clearing terminal
-#alias clear="clear && neofetch"
 
 # Colorize grep output (chachi for log files)
 alias grep="grep --color=auto"
