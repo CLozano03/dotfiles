@@ -1,17 +1,15 @@
 #!/bin/sh
 
-arg1=("$1")
+# Dir when screensots are going to be stored
+DIR="$HOME/Pictures/screenshots/"
+if [ ! -d $DIR ]; then mkdir -p $DIR; fi
 
-DIR="$HOME/Imagenes/screenshots/"
 NAME="scs_$(date +%d%m%Y_%H%M%S).png"
 
-if [ ! -d "$DIR" ]; then
-    mkdir -p $DIR
-fi
-
-case $arg1 in
+case $1 in
     1)
-        slurp | grim -g - "$DIR$NAME"
+        selected="$(slurp)"
+        sleep 0.2 && grim -g "$selected" "$DIR$NAME" # Have to sleep for correct screenshot
     
         if [[ $? -eq 0 ]]; then
             command cat "$DIR$NAME" | wl-copy
