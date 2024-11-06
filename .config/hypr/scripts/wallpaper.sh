@@ -53,9 +53,6 @@ echo ":: Setting wallpaper with original image $wallpaper"
 # ----------------------------------------------------- 
 # Copy path of current wallpaper to cache file
 # ----------------------------------------------------- 
-if [ ! -f $cache_file ] ;then
-    touch $cache_file
-fi
 echo "$wallpaper" > $cache_file
 echo ":: Path of current wallpaper copied to $cache_file"
 
@@ -93,3 +90,5 @@ if [ ! -f $rasi_file ] ;then
     touch $rasi_file
 fi
 echo "* { current-image: url(\"$blurred_wallpaper\", height); }" > "$rasi_file"
+
+exit 0

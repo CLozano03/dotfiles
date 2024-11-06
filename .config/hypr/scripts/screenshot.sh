@@ -54,3 +54,5 @@ case $1 in
         swappy -f "$DIR$NAME"
     ;;
 esac
+
+exit 0
