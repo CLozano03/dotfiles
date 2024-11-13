@@ -1,3 +1,7 @@
+#!/bin/sh
+
+export QT_QPA_PLATFORM=wayland
+
 # Default editor
 export EDITOR='/usr/bin/nvim'
 export VEDITOR='/usr/bin/code'
@@ -14,3 +18,5 @@ export PATH=$JAVA_HOME/bin:$PATH
 
 export ROCKU=/usr/share/wordlists/rockyou.txt
 export TERM=alacritty
+
+export CACHE_DIR=$HOME/.cache/

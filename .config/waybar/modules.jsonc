@@ -14,14 +14,17 @@
         "on-click": "activate",
         "active-only": true,
         "all-outputs": true,
-        "format": "{}",
+        "format": "{icon}",
         "format-icons": {
-            "urgent": "",
-            "active": "",
-            "default": ""
+        "1": "󰈹",
+        "2": "",
+        "3": "󰨞",
+        "4": "󰈔",
+        "5": "",
+        "6": ""
         },
         "persistent-workspaces": {
-            "*": 5
+            "*": 6
         }       
     },
 
@@ -29,7 +32,7 @@
 
     "custom/archlogo": {
         "format": "<span color=\"#1793d1\"></span> <span color=\"#777777\"></span>",
-        "on-click": "alacritty"
+        "on-click": "kitty"
     },
 
 
@@ -58,7 +61,7 @@
     // Waybar Themes
     "custom/waybarthemes": {
         "format": "",
-        "on-click": "~/dotfiles/waybar/themeswitcher.sh",
+        "on-click": "$XDG_CONFIG_HOME/waybar/themeswitcher.sh",
         "tooltip-format": "Select a waybar theme"
     },
 
@@ -116,9 +119,9 @@
     // Cliphist
     "custom/cliphist": {
         "format": "",
-        "on-click": "sleep 0.1 && ~/dotfiles/scripts/cliphist.sh",
-        "on-click-right": "sleep 0.1 && ~/dotfiles/scripts/cliphist.sh d",
-        "on-click-middle": "sleep 0.1 && ~/dotfiles/scripts/cliphist.sh w",
+        "on-click": "sleep 0.1 && $XDG_CONFIG_HOME/hypr/scripts/cliphist.sh",
+        "on-click-right": "sleep 0.1 && $XDG_CONFIG_HOME/hypr/scripts/cliphist.sh d",
+        "on-click-middle": "sleep 0.1 && $XDG_CONFIG_HOME/hypr/scripts/cliphist.sh w",
         "tooltip-format": "Clipboard Manager"
     },
 
@@ -282,27 +285,25 @@
         "spacing": 5
     },
 
-    // Pulseaudio
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{icon}   {volume}%",
-        "format-bluetooth": "{volume}%  {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": " ",
-            "hands-free": " ",
-            "headset": " ",
-            "phone": " ",
-            "portable": " ",
-            "car": " ",
-            "default": [" ", " ", " "]
-        },
+     // Pulseaudio
+     "pulseaudio": {
+        "scroll-step": 2,
+      "format": "{icon}   {volume}%",
+      "format-muted": "󰝟  Muted", // Icon: volume-mute
+      "format-icons": {
+        "headphones": "", // Icon: headphones
+        "handsfree": "", // Icon: headset
+        "headset": "󰂯", // Bluetooth
+        "phone": "", // Icon: phone
+        "portable": "", // Icon: phone
+        "car": "", // Icon: car
+        "default": [
+            "", "", ""
+        ],
         "on-click": "pavucontrol"
+    }
     },
-
+    
     // Bluetooth
     "bluetooth": {
         "format": " {status}",
@@ -324,13 +325,16 @@
       "format-charging": "{icon}   {capacity}% ", // Icon: bolt
       // Not connected to AC
       "format-discharging": "{icon}  {capacity}%",
+      "format-full": "{icon}  {capacity}%",
+
       "format-icons": {
         "discharging":[
           "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"
         ],
         "charging": [
           "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉","󰂉", "󰂊", "󰂋", "󰂅"
-        ]
+        ],
+        "full": [ "󰁹" ]
       },
       "tooltip": true
     },
@@ -350,14 +354,26 @@
         "on-click-right": "nm-conection-editor"
     },
 
-    // Clock
+
     "clock": {
-        "format": "{:%H:%M %a}",
-        // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        // START CLOCK FORMAT
-        "format-alt": "{:%Y-%m-%d}"
-        // END CLOCK FORMAT
+      "interval": 15,
+    "format": "{:%H:%M }",
+        "format-alt": "{%a. :%Y-%m-%d}",
+
+      "tooltip-format": "\n<span size='9pt' font='WenQuanYi Zen Hei Mono'>{calendar}</span>",
+      "calendar": {
+        "mode"          : "year",
+        "mode-mon-col"  : 3,
+        "weeks-pos"     : "right",
+        "on-scroll"     : 1,
+        "format": {
+          "months":     "<span color='#ffead3'><b>{}</b></span>",
+          "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+          "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+          "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+          "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+          }
+        }
     },
 
     // Power Menu
