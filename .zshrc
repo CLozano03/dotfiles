@@ -42,12 +42,12 @@ eval "$(zoxide init zsh)" # zoxide for better cd navigation
 eval "$(fzf --zsh)" # fuzzyfinder
 eval "$(oh-my-posh init zsh --config $ZSH_CONFIG/ohmyposh/zen.toml)"
 
-# if [ -n "$DBUS_SESSION_BUS_ADDRESS" ]; then
-#     dbus-update-activation-environment --all
-# fi
+# Activate to allow starting GUI apps from Zsh
+if [ -n "$DBUS_SESSION_BUS_ADDRESS" ]; then
+    dbus-update-activation-environment --all
+fi
 
-
-# Load fastfetch when zsh
+# Load fastfetch when zsh to seem cooler
 fastfetch
 
 #if [[ -z "$TMUX" ]]; then
@@ -56,4 +56,4 @@ fastfetch
 
 # export NVM_DIR="$HOME/.config/nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

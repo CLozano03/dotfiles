@@ -1,7 +1,5 @@
 #!/bin/sh
 
-export QT_QPA_PLATFORM=wayland
-
 # Default editor
 export EDITOR='/usr/bin/nvim'
 export VEDITOR='/usr/bin/code'
