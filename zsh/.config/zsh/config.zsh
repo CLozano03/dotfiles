@@ -13,11 +13,10 @@ setopt hist_find_no_dups  # do not display duplicates in history search
 
 bindkey -d # Reset all binds 
 
-bindkey '^j' history-search-forward
-bindkey '^k' history-search-backward
-
-bindkey '<Up>' history-search-forward
+bindkey '^P' history-search-backward  
+bindkey '^N' history-search-forward  
 bindkey '<Down>' history-search-backward
+bindkey '<Up>' history-search-forward
 
 # ########## Completion config ##########
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' #ls 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
@@ -25,9 +24,8 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu-no #list-prompt '%SAt %p: Hit TAB for more, or the character to insert%s'
 zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-#
-#
-# # don't nice background tasks
+
+# don't nice background tasks
 setopt NO_BG_NICE
 setopt NO_HUP
 setopt NO_BEEP
@@ -35,31 +33,37 @@ setopt NO_BEEP
 setopt LOCAL_OPTIONS
 # allow functions to have local traps
 setopt LOCAL_TRAPS
-#
-# # backward and forward word with option+left/right
-bindkey '^[[1;5D' backward-word   # ctrl + left
-bindkey '^A' backward-word        # ctrl + a
-bindkey '^[[1;5C' forward-word    # ctrl + right
-stty -ixon && bindkey '^S' forward-word         # ctrl + s
-
-# # to to the beggining/end of line with fn+left/right or home/end
-bindkey '^[[H' beginning-of-line
-bindkey '^[[F' end-of-line
-
-# delete char with backspaces and delete
-bindkey '^?' backward-delete-char
-
-# # delete word with ctrl+alt+backspace
-bindkey '^[^H' backward-kill-line
-
-bindkey '^H' backward-delete-word # ctrl+backspace
 
 bindkey '^W' kill-whole-line
 
-# # edit command line in $EDITOR
+# edit command line in $EDITOR
 autoload -z edit-command-line && zle -N edit-command-line && bindkey '^e' edit-command-line
 
-bindkey '^P' autosuggest-accept
+bindkey '^o' autosuggest-accept
+
+# Habilitar modo vi en Zsh
+bindkey -v
+
+# Change cursor depending on the vim mode
+function zle-keymap-select {
+    case $KEYMAP in
+        vicmd) echo -ne '\e[1 q' ;;  # Block (█) in normal mode
+        viins|main) echo -ne '\e[5 q' ;;  # Bar (|) in insert mode
+    esac
+}
+
+# Executed when new zsh line 
+function zle-line-init {
+    echo -ne '\e[5 q'  # Iniciar en modo inserción con cursor barra
+}
+
+zle -N zle-keymap-select
+zle -N zle-line-init
+
+# Exec zle-keymap-select when changing mode
+autoload -Uz add-zsh-hook
+add-zsh-hook zle-keymap-select zle-line-init
+
 
 add_sudo_prefix() {
     LBUFFER="sudo $LBUFFER"
