@@ -3,8 +3,14 @@
 
 # Except for these files and folders
 !.wallpapers
-!.zshrc
-!.config
+
+!btop
+!fastfetch
+!hypr
+!kitty
+!lsd
+!ruff
+!zsh
 
 # Always ignore:
 *.log
