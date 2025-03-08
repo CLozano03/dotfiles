@@ -41,8 +41,14 @@ autoload -z edit-command-line && zle -N edit-command-line && bindkey '^e' edit-c
 
 bindkey '^o' autosuggest-accept
 
-# Habilitar modo vi en Zsh
-bindkey -v
+ # ESC ESC to add sudo at the beggining of the line
+add_sudo_prefix() {
+    LBUFFER="sudo $LBUFFER"
+    zle reset-prompt
+}
+zle -N add_sudo_prefix && bindkey '^[^[' add_sudo_prefix
+
+# VIM MODE
 
 # Change cursor depending on the vim mode
 function zle-keymap-select {
@@ -57,17 +63,8 @@ function zle-line-init {
     echo -ne '\e[5 q'  # Iniciar en modo inserción con cursor barra
 }
 
+bindkey -v  
 zle -N zle-keymap-select
 zle -N zle-line-init
 
-# Exec zle-keymap-select when changing mode
-autoload -Uz add-zsh-hook
-add-zsh-hook zle-keymap-select zle-line-init
 
-
-add_sudo_prefix() {
-    LBUFFER="sudo $LBUFFER"
-    zle reset-prompt
-}
-# Asocia la función al atajo de teclado Ctrl+k
-zle -N add_sudo_prefix && bindkey '^[^[' add_sudo_prefix
