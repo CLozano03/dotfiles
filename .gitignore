@@ -9,7 +9,10 @@
 !hypr
 !kitty
 !lsd
+!nvim
 !ruff
+!tmux
+!wlogout
 !zsh
 
 # Always ignore:
