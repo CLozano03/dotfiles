@@ -1,6 +1,6 @@
 #!/bin/sh
-#
-# # ########## History config ##########
+
+# History config
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=$HISTSIZE
@@ -18,7 +18,7 @@ bindkey '^N' history-search-forward
 bindkey '<Down>' history-search-backward
 bindkey '<Up>' history-search-forward
 
-# ########## Completion config ##########
+# Completion config
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' #ls 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu-no #list-prompt '%SAt %p: Hit TAB for more, or the character to insert%s'
@@ -35,13 +35,21 @@ setopt LOCAL_OPTIONS
 setopt LOCAL_TRAPS
 
 bindkey '^W' kill-whole-line
+bindkey '^[l' clear-screen
 
 # edit command line in $EDITOR
 autoload -z edit-command-line && zle -N edit-command-line && bindkey '^e' edit-command-line
 
 bindkey '^o' autosuggest-accept
+bindkey '^H' backward-delete-word # ctrl+backspace
 
- # ESC ESC to add sudo at the beggining of the line
+bindkey "^[[1;5D" backward-word
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;6D" beginning-of-line
+bindkey "^[[1;6C" end-of-line
+
+
+# ESC ESC to add sudo at the beggining of the line
 add_sudo_prefix() {
     LBUFFER="sudo $LBUFFER"
     zle reset-prompt
