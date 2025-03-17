@@ -1,0 +1,9 @@
+# Git
+.git
+.gitignore
+.gitmodules
+
+# Dotfiles
+LICENSE
+README.md
+
