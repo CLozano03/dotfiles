@@ -1,3 +1,6 @@
 [submodule ".config/tmux/plugins/tpm"]
 	path = .config/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm.git
+[submodule ".config/tmux/plugins/.config/tmux/plugins/tmux-open"]
+	path = .config/tmux/plugins/.config/tmux/plugins/tmux-open
+	url = https://github.com/tmux-plugins/tmux-open.git
