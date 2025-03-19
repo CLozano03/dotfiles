@@ -1,5 +1,9 @@
 #!/bin/sh
 
+if [[ $(tty) == /dev/tty1 ]]; then
+  exec hyprland
+fi
+
 # Shortcut to this dotfiles path is $DOTFILES
 export DOTFILES="$HOME/dotfiles"
 export ZSH=$HOME/.oh-my-zsh

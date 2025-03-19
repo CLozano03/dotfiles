@@ -18,5 +18,5 @@ hyprctl reload && notify-send "Hypr reload"
 hypridle &
 
 # Waybar
-# waybar &
-# notify-send "Waybar restarted"
+waybar &
+#notify-send "Waybar restarted"
