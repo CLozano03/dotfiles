@@ -1,0 +1,164 @@
+* {
+    border: none;
+    border-radius: 0px;
+    /* `ttf-font-awesome` is required to be installed for icons */
+    font-family: "Jetbrains Mono", /* "Roboto Mono Medium", */ Helvetica, Arial, sans-serif;
+
+    /* adjust font-size value to your liking: */
+    font-size: 16px;
+
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: rgba(26, 27, 38, 1);
+    /* border-bottom: 3px solid rgba(100, 114, 125, 0.5); */
+    color: #eeeeee;
+    margin: 0px 30px;
+    /* transition-property: background-color; */
+    /* transition-duration: .5s; */
+    /* border-radius: 0; */
+}
+
+#custom-archlogo {
+    padding: 0px 5px 0px 18px; 
+    font-size: 18px;
+    margin: 3px 0px;
+    border-radius: 20px;
+}
+
+#workspaces {
+    background-color: rgba(26, 27, 38, 1);
+    padding: 0px 0px 3px 0px;
+    font-size: 15px;
+    border-radius: 20px;
+    margin: 3px 0px 3px 8px;
+  }  
+    
+  #workspaces .active * {
+    font-size: 17px;
+    color: #ffffff;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 2px 0px 2px;
+  }
+  
+  #workspaces button {
+    border-top: 0px solid transparent;
+    /* To compensate for the top border and still have vertical centering */
+    padding-bottom: 0px;
+    padding-left: 8px;
+    padding-right: 8px;
+    color: #aaaaaa;
+}
+
+#workspaces button.empty {
+    color: #2f2f2f;
+  }
+  
+  #workspaces button:hover {
+    /* Reset all hover styles */
+    background: inherit;
+    box-shadow: inherit;
+    text-shadow: inherit;
+  }
+  
+  #workspaces button.urgent {
+    /*border-color: #2f343a; */
+    color: #eeeeee; /* Sway palette: urgent/text */
+    background-color: #900000; /* Sway palette: urgent/background */
+  }
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#custom-exit,
+#mpd {
+    font-size: 15px;
+    padding: 0 5px;
+    background-color:  rgba(26, 27, 38, 1);
+    margin: 0px 0px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#tray {
+    font-size: 9px;
+}
+
+#clock {
+    font-size: 17px;
+}
+
+#idle_inhibitor {
+    font-size: 20px;
+    background-color:  rgba(26, 27, 38, 1);
+    padding: 0px 10px 0px 10px;
+}
+
+#battery {
+    background-color:  rgba(26, 27, 38, 1);;
+}
+
+#battery.charging {
+    color: #eeeeee;
+    background-color:  rgba(26, 27, 38, 1);
+}
+
+#battery.critical:not(.charging) {
+    background-color: #f53c3c;
+    color: #eeeeee;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+label:focus {
+    background-color: #000000;
+}
+
+#network {
+    background-color: #000000;
+    color:white;
+}
+
+#pulseaudio {
+    background-color:  rgba(26, 27, 38, 1);
+    color: #eeeeee;
+}
+
+#pulseaudio.muted {
+    background-color:  rgba(26, 27, 38, 1);
+    color: #eeeeee;
+}
+
+#tray {
+    background-color: rgba(26, 27, 38, 1);
+}
+
+
+/* #custom-exit button:hover {
+    background-color: rgb(51, 54, 71);
+    border-radius: 250px;
+    color: #9a3c3c;
+    padding: 0px 6px 0 4px;
+    margin: 2 5px;
+} */
