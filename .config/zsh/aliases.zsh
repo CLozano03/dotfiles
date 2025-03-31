@@ -1,7 +1,7 @@
 #!/bin/zsh
 # Path: $XDG_CONFIG_HOME/zsh/aliases.zsh
 
-# Some "misspelings" ~~espero no malacostumbrarme~~
+# Some "misspelings"
 alias pdw="pwd"
 alias chomd="chmod" 
 
@@ -21,8 +21,7 @@ alias barconf=""$VEDITOR" "$HOME"/.config/waybar"
 alias zshrc="source ~/.zshrc"
 
 # bat
-alias cat='bat'
-alias catn='bat --style=plain'
+alias cat='bat --style=plain'
 alias catnp='bat --style=plain --paging=never'
 
 # ls
@@ -32,7 +31,7 @@ alias l='lsd --group-dirs=first'
 alias lla='lsd -lha --group-dirs=first'
 alias ls='lsd --group-dirs=first'
 alias lln="command ls -l"
-alias lt="lsd --total-size -l" # Show total size of each directory. Takes some time 
+alias lt="lsd --total-size -l" # Show total size of each directory. Takes some time
 
 # Zoxide instead of cd
 alias cd="z"
@@ -40,6 +39,7 @@ alias cdi="zi" # Buscar un directorio
 
 alias c="clear"
 alias v="nvim"
+alias j="just"
 alias edit="code ." # Open VSCode in the current directory
 alias em="emacs -nw"
 alias emacs="emacsclient -c -a 'emacs'"
@@ -49,6 +49,7 @@ alias htop="btop"
 alias gparted="sudo -E gparted"
 alias :q="exit"
 alias cppath="pwd | wl-copy"
+
 
 # Show NEOFETCH when clearing terminal
 
