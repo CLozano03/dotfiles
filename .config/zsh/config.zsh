@@ -1,7 +1,5 @@
 #!/bin/sh
 
-
-
 # History config
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
@@ -14,6 +12,12 @@ setopt hist_ignore_space  # ignore commands that start with a space
 setopt hist_find_no_dups  # do not display duplicates in history search
 
 bindkey -d # Reset all binds 
+
+# Bindkeys mode, load bindkeys, then overwrite
+bindkey -e # Load emacs bindkeys by default
+if [[ "$VI_MODE" -eq 1 ]]; then
+    bindkey -v
+fi
 
 bindkey '^P' history-search-backward  
 bindkey '^N' history-search-forward  
@@ -36,13 +40,11 @@ setopt LOCAL_OPTIONS
 # allow functions to have local traps
 setopt LOCAL_TRAPS
 
-bindkey '^W' kill-whole-line
-bindkey '^[l' clear-screen
 
 # edit command line in $EDITOR
 autoload -z edit-command-line && zle -N edit-command-line && bindkey '^e' edit-command-line
 
-bindkey '^o' autosuggest-accept
+bindkey '^O' autosuggest-accept
 bindkey '^H' backward-delete-word # ctrl+backspace
 
 bindkey "^[[1;5D" backward-word
@@ -50,13 +52,37 @@ bindkey "^[[1;5C" forward-word
 bindkey "^[[1;6D" beginning-of-line
 bindkey "^[[1;6C" end-of-line
 
-
 # ESC ESC to add sudo at the beggining of the line
 add_sudo_prefix() {
     LBUFFER="sudo $LBUFFER"
     zle reset-prompt
 }
 zle -N add_sudo_prefix && bindkey '^[^[' add_sudo_prefix
+
+autoload -Uz add-zsh-hook
+
+function clean_empty_input() {
+  local lines=("${(f)BUFFER}")
+
+  # Delete lines if empty
+  if (( ${#lines[@]} > 1 )); then
+    local all_empty=true
+    for line in $lines; do
+      [[ -n "${line//[[:space:]]/}" ]] && all_empty=false
+    done
+    if $all_empty; then
+      BUFFER=""
+      zle reset-prompt
+      return 0
+    fi
+  fi
+
+  # Only a line -> Normal behavior
+  zle .accept-line
+}
+
+zle -N accept-line clean_empty_input
+
 
 # VIM MODE
 
@@ -70,11 +96,14 @@ function zle-keymap-select {
 
 # Executed when new zsh line 
 function zle-line-init {
-    echo -ne '\e[5 q'  # Iniciar en modo inserción con cursor barra
+    # zle vi-cmd-mode # Init in normal mode
+    echo -ne '\e[5 q'  # Init in insert mode with bar
 }
 
-bindkey -v  
-zle -N zle-keymap-select
-zle -N zle-line-init
-
-
+if [[ "$VI_MODE" -eq 1 ]]; then
+    zle -N zle-keymap-select
+    zle -N zle-line-init
+    bindkey '^?' backward-delete-char
+    bindkey -M vicmd '^M' accept-line
+    bindkey -M viins '^M' accept-line
+fi
