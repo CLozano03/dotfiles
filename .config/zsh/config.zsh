@@ -40,6 +40,7 @@ setopt LOCAL_OPTIONS
 # allow functions to have local traps
 setopt LOCAL_TRAPS
 
+bindkey '^[L' clear-screen
 
 # edit command line in $EDITOR
 autoload -z edit-command-line && zle -N edit-command-line && bindkey '^e' edit-command-line
@@ -83,8 +84,7 @@ function clean_empty_input() {
 
 zle -N accept-line clean_empty_input
 
-
-# VIM MODE
+# VIM MODE CONFIG
 
 # Change cursor depending on the vim mode
 function zle-keymap-select {
@@ -92,18 +92,26 @@ function zle-keymap-select {
         vicmd) echo -ne '\e[1 q' ;;  # Block (█) in normal mode
         viins|main) echo -ne '\e[5 q' ;;  # Bar (|) in insert mode
     esac
+    zle reset-prompt
 }
 
 # Executed when new zsh line 
 function zle-line-init {
-    # zle vi-cmd-mode # Init in normal mode
-    echo -ne '\e[5 q'  # Init in insert mode with bar
+    # zle vi-cmd-mode # Uncoment line to init in normal mode
+    zle-keymap-select
+}
+
+function custom-clean-screen() {
+    zle clear-screen
+    zle-keymap-select
 }
 
 if [[ "$VI_MODE" -eq 1 ]]; then
     zle -N zle-keymap-select
     zle -N zle-line-init
+    zle -N custom-clean-screen
     bindkey '^?' backward-delete-char
     bindkey -M vicmd '^M' accept-line
     bindkey -M viins '^M' accept-line
+    bindkey '^[^L' custom-clean-screen
 fi
