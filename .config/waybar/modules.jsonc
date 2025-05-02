@@ -319,7 +319,7 @@
 
     // Power Menu
     "custom/exit": {
-        "format": " ⏻ ",
+        "format": "⏻",
         "on-click": "~/.config/hypr/scripts/wlogout.sh",
         "tooltip-format": "Power Menu"
     }
