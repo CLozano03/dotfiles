@@ -1,10 +1,5 @@
 #!/bin/sh
 
-START_HYPRLAND=0
-if [[ "$START_HYPRLAND" == "1" && $(tty) == /dev/tty1 && -z "$WAYLAND_DISPLAY" && -z "$DISPLAY" ]]; then
-  exec hyprland
-fi
-
 # Shortcut to this dotfiles path is $DOTFILES
 export DOTFILES="${HOME}/dotfiles"
 export XDG_CONFIG_HOME="${HOME}/.config"
