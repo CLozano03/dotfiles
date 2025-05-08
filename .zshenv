@@ -18,4 +18,5 @@ export ROCKU=/usr/share/wordlists/rockyou.txt
 export TERM=alacritty
 
 export CACHE_DIR=$HOME/.cache/
+export PATH="$HOME/.local/bin:$PATH"
 export PATH=/usr/local/texlive/2025/bin/x86_64-linux:$PATH

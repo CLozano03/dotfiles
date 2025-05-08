@@ -4,13 +4,14 @@
 export DOTFILES="${HOME}/dotfiles"
 export XDG_CONFIG_HOME="${HOME}/.config"
 export ZSH_CONFIG="${XDG_CONFIG_HOME}/zsh"
-export PATH="${PATH}:/home/cesar/.local/bin"
+export PATH="${PATH}:${HOME}/.local/bin"
+export CACHE_DIR="${HOME}/.cache"
 
 export VI_MODE=1 # 1 if using vim mode. Loaded in config.zsh
 source "${ZSH_CONFIG}/config.zsh"
 
 # Installing (if not) and loading Zinit, a plugin manager for zsh
-# Dir to store zinit configuration
+# Dir to store ziit configuration
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
