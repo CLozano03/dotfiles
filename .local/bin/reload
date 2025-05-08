@@ -1,31 +1,36 @@
 #!/bin/sh
 
+function notification_reload(){
+    text=$1
+    notify-send -t 2500 "$text"
+}
+
 LOCK_FILE="$HOME/.cache/reload.lock"
 if [ -f $LOCK_FILE ]; then exit 0; fi
 
 touch $LOCK_FILE
 
 # Kill processes to be restarted
-_ps=(waybar rofi swaync hypridle)
+_ps=(waybar rofi dunst hypridle)
 for _prs in "${_ps[@]}"; do
     if pidof "${_prs}" >/dev/null; then
         pkill "${_prs}"
     fi
 done
 
-# Sway
-# sleep 0.2
-# swaync
-# notify-send "Sway reload"
+# Notification center
+dunst &
+notification_reload "Dunst reload"
 
 # Hypr
-hyprctl reload # && notify-send "Hypr reload"
+hyprctl reload  && notification_reload "Hypr reload"
 hypridle &
 
 # Waybar
 if [ ! -f ~/.cache/waybar-disabled ]; then
     sh ~/.config/waybar/launch.sh
+    notification_reload "Waybar restarted"
 fi
-#notify-send "Waybar restarted"
 
+sleep 0.2
 rm $LOCK_FILE
