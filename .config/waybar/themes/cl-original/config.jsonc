@@ -1,0 +1,38 @@
+{
+    // General Settings
+    "layer": "top",
+    "position": "top",
+    "height": 24,
+
+
+    "margin-right": 0,
+    "margin-left": 0,
+    "margin-top": 0,
+    "margin-bottom": 0,
+    "spacing": 0,
+    
+    // Load Modules
+    "include": [
+        "~/.config/waybar/modules.jsonc"
+    ],
+
+    // Modules Left
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+
+    // Modules Center
+    "modules-center": [
+        "custom/archlogo",
+        "clock",
+        "idle_inhibitor"
+    ],
+
+    // Modules Right
+    "modules-right": [
+        "tray",
+        "pulseaudio",
+        "battery", 
+        "custom/exit"
+    ]
+}

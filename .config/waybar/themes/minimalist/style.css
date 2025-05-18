@@ -1,48 +1,36 @@
+/* Import wallpapercolors */
+@import url("/home/cesar/.cache/wal/colors-waybar.css");
+
 * {
     border: none;
     border-radius: 0px;
-    /* `ttf-font-awesome` is required to be installed for icons */
-    font-family: "Jetbrains Mono", /* "Roboto Mono Medium", */ Helvetica, Arial, sans-serif;
+    font-family: "Jetbrains Mono";
 
     /* adjust font-size value to your liking: */
-    font-size: 16px;
-
-    min-height: 0;
+    font-size: 14px;
 }
 
 window#waybar {
-    background-color: rgba(26, 27, 38, 1);
-    /* border-bottom: 3px solid rgba(100, 114, 125, 0.5); */
+    background-color: @background;
+    /* background-color: #000000; */
     color: #eeeeee;
-    margin: 0px 30px;
-    /* transition-property: background-color; */
-    /* transition-duration: .5s; */
-    /* border-radius: 0; */
-}
-
-#custom-archlogo {
-    padding: 0px 5px 0px 18px; 
-    font-size: 18px;
-    margin: 3px 0px;
-    border-radius: 20px;
+    transition-duration: .5s;
 }
 
 #workspaces {
-    background-color: rgba(26, 27, 38, 1);
-    padding: 0px 0px 3px 0px;
-    font-size: 15px;
-    border-radius: 20px;
-    margin: 3px 0px 3px 8px;
-  }  
-    
-  #workspaces .active * {
-    font-size: 17px;
+    /* background-color: rgba(26, 27, 38, 1); */
+    padding: 0px 0px 0px 30px;
+    border-radius: 10px;
+    margin: 2px 3px 2px 8px;
+}
+
+#workspaces .active * {
     color: #ffffff;
     margin: 0px 0px 0px 0px;
     padding: 0px 2px 0px 2px;
   }
-  
-  #workspaces button {
+
+#workspaces button {
     border-top: 0px solid transparent;
     /* To compensate for the top border and still have vertical centering */
     padding-bottom: 0px;
@@ -54,14 +42,14 @@ window#waybar {
 #workspaces button.empty {
     color: #2f2f2f;
   }
-  
+
   #workspaces button:hover {
     /* Reset all hover styles */
     background: inherit;
     box-shadow: inherit;
     text-shadow: inherit;
   }
-  
+
   #workspaces button.urgent {
     /*border-color: #2f343a; */
     color: #eeeeee; /* Sway palette: urgent/text */
@@ -82,10 +70,9 @@ window#waybar {
 #idle_inhibitor,
 #custom-exit,
 #mpd {
-    font-size: 15px;
     padding: 0 5px;
-    background-color:  rgba(26, 27, 38, 1);
-    margin: 5px 3px;
+    /* background-color:  rgba(26, 27, 38, 1); */
+    /* margin: 5px 3px; */
 
 }
 
@@ -99,28 +86,13 @@ window#waybar {
     margin-right: 0;
 }
 
-#tray {
-    font-size: 9px;
-}
-
-#clock {
-    font-size: 17px;
-}
 
 #idle_inhibitor {
-    font-size: 20px;
-    background-color:  rgba(26, 27, 38, 1);
+    font-size: 17px;
+
     padding: 0px 10px 0px 10px;
 }
 
-#battery {
-    background-color:  rgba(26, 27, 38, 1);;
-}
-
-#battery.charging {
-    color: #eeeeee;
-    background-color:  rgba(26, 27, 38, 1);
-}
 
 #battery.critical:not(.charging) {
     background-color: #f53c3c;
@@ -136,24 +108,6 @@ label:focus {
     background-color: #000000;
 }
 
-#network {
-    background-color: #000000;
-    color:white;
-}
-
-#pulseaudio {
-    background-color:  rgba(26, 27, 38, 1);
-    color: #eeeeee;
-}
-
-#pulseaudio.muted {
-    background-color:  rgba(26, 27, 38, 1);
-    color: #eeeeee;
-}
-
-#tray {
-    background-color: rgba(26, 27, 38, 1);
-}
 
 #custom-exit {
     transition: color 0.15s ease; /* transición suave de 0.5 segundos */

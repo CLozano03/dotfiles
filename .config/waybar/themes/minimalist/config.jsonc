@@ -1,15 +1,9 @@
-// __        __          _                 
-// \ \      / /_ _ _   _| |__   __ _ _ __  
-//  \ \ /\ / / _` | | | | '_ \ / _` | '__| 
-//   \ V  V / (_| | |_| | |_) | (_| | |    
-//    \_/\_/ \__,_|\__, |_.__/ \__,_|_|    
-//                 |___/                   
-
-
 {
     // General Settings
     "layer": "top",
     "position": "top",
+    "height": 24,
+
 
     "margin-right": 0,
     "margin-left": 0,
@@ -24,24 +18,20 @@
 
     // Modules Left
     "modules-left": [
-        "custom/archlogo",
         "hyprland/workspaces"
     ],
 
     // Modules Center
     "modules-center": [
+        "custom/archlogo",
         "clock",
         "idle_inhibitor"
     ],
 
-    // Modules Right    
+    // Modules Right
     "modules-right": [
         "tray",
-        // "group/hardware",
-        // "custom/updates",
-        //"network",
         "pulseaudio",
-        //"group/tools",
         "battery", 
         "custom/exit"
     ]
