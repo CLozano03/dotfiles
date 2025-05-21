@@ -5,6 +5,9 @@
 alias pdw="pwd"
 alias chomd="chmod" 
 
+
+alias bigfiles="sudo ncdu --exclude /proc --exclude /sys --exclude /dev --exclude /run --exclude /home /"
+
 # Edit config files
 alias zshconf=""$EDITOR" "$HOME"/.zshrc"
 alias ohmyzsh=""$EDITOR" "$HOME"/.oh-my-zsh"

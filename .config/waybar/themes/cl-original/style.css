@@ -1,107 +1,45 @@
+/* Import wallpapercolors */
+@import url("/home/cesar/.cache/wal/colors-waybar.css");
+
+@define-color colorhover @color6;
+@define-color coloractive @color6;
+@define-color bordercolors @color2;
+
+
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 13px;
+  font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  color: @foreground;        /* Texto */
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
-  /* The whole bar */
 
-  window#waybar {
-    background:rgba(50, 50, 50, 0.95);
-    /*    background-color: rgba(43, 48, 59, 0.8); */
-    /*    border-bottom: 3px solid rgba(100, 114, 125, 0.5); */
-    transition-property: background-color;
-    transition-duration: .5s;
-    font-size: 14px;
-    font-weight: bold;
-    margin: 20px 0px 0px 10px; /* N E S O*/
-  }
+/* Estilo de la barra */
+window#waybar {
+  background: rgba(10, 0, 0, 0);  /* Fondo semi-transparente */
+  color: @foreground;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 20px 0px 0px 10px; /* N E S O */
+}
 
-  window#waybar.hidden {
-    opacity: 1;
-  }
+window#waybar.hidden {
+  opacity: 1;
+}
   
-/* ================= LEFT =================== */
-  
-  #custom-archlogo {
-    padding: 0px 10px 0px 14px;
-    background-color:rgba(0,0,0,1);
-    font-size: 19px;
-    margin: 0px 0px 0px 4px; /* N E S O */
-    text-shadow: rgb(0, 255, 255) 0px -1px 8px;
-  }
-
-  #workspaces {
-    padding: 2px 12px 0px 12px;
-    background-color:rgba(0,0,0,0.9);
-    font-size: 15px;
-    border-radius: 15px;
-    margin: 0px 0px 0px 8px;
-  }  
-    
-  #workspaces .active * {
-    color: #0080bb;
-    font-size: 20px;
-    margin: 0px 0px 0px 0px;
-    padding: 0px 2px 0px 2px;
-  }
-  
-  #workspaces button {
-    border-top: 0px solid transparent;
-    /* To compensate for the top border and still have vertical centering */
-    padding-bottom: 0px;
-    padding-left: 8px;
-    padding-right: 8px;
-    color: #555555;
-  }
-  
-  #workspaces button:hover {
-    /* Reset all hover styles */
-    background: inherit;
-    box-shadow: inherit;
-    text-shadow: inherit;
-  }
-  
-  #workspaces button.urgent {
-    /*border-color: #2f343a; */
-    color: #ffffff; /* Sway palette: urgent/text */
-    background-color: #900000; /* Sway palette: urgent/background */
-  }
-  
-/* ================= CENTER =================== */
-  #window {
-    margin: 0;
-    padding-left: 8px;
-    padding-right: 8px;
-    background-color: rgba(0,0,0,0);
-    font-size:14px;
-    font-weight: bold;
-  }
-
   /* ================= RIGHT =================== */
-   /* -----------------------------------------------------------------------------
-   * Module styles
-   * -------------------------------------------------------------------------- */
   /* Each module */
   #backlight,
   #battery,
-  #clock,
-  #cpu,
-  #custom-primary,
-  #custom-clipboard,
-  #custom-keyboard-layout,
-  #custom-dunst,
-  #custom-pacman,
-  #custom-uptime,
-  #idle_inhibitor,
-  #mode,
-  #network,
   #pulseaudio,
-  #temperature,
+  #custom-exit,
+  #workspaces,
+  #logo-clock-idle,
   #tray {
     padding: 1px 10px 1px 10px;
     margin: 3px 4px 3px 2px;
-    background-color: rgba(0,0,0,0.85);
-    border-radius: 15px;
+    background: @background;
+    border: 2px solid @bordercolors;
+    border-radius: 20px;
   }
  
   /* If workspaces is the rightmost module, omit right margin */
@@ -109,30 +47,6 @@
     margin-right: 0px;
   }
 
-  #tray {
-    padding: 0px 10px 0px 10px;
-    background-color: rgba(0,0,0,0.8);
-  }
-  
-  #network {
-    color: #F9A7FF;
-  }
-
-  #backlight {
-    color: #ffa7af;
-    
-  }
-
-  #pulseaudio {
-    color: #b0c2f2;
-  }
-
-  #battery {
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    color : #b0f2c2;
-  }
   #battery.warning:not(.charging) {
     background-color: #f53c3c;
     color: #ffffff;
@@ -151,29 +65,99 @@
     animation-iteration-count: infinite;
     animation-direction: alternate;
   }
-  
-
-  #clock {
-    color: #fdf9c4;
-  }
 
   #network.disconnected { color: orange; }
     
   #pulseaudio.muted { color : rgb(255, 87, 87); }
 
-  #window {
-    margin-left: 32px;
-    margin-right: 32px;
+  
+  /* Center */
+  #custom-archlogo {
+    padding: 0px 7px 0px 2px;
+    font-size: 15px;
+    transition: text-shadow 0.3s ease;
+    /* color: rgb(23, 147, 209);
+    text-shadow: rgb(0, 255, 255) 0px -1px 8px; */
+  }
+  #custom-archlogo:hover {
+    padding: 0px 7px 0px 2px;
+    font-size: 15px;
+    color: @colorhover;
+    text-shadow: @colorhover 0px -1px 8px; 
   }
   
+  #clock {
+    font-family: "JetbrainsMono Nerd Font", monospace;
+    font-size: 14px;
+    padding: 2px 2px 0px 8px;
+    margin: 2px 0px 2px 10px;
+    /* background-color: rgba(91, 90, 90, 0.779); */
+    /* background-color: @color8; */
+    border-radius: 15px;
+  }
+
+  #idle_inhibitor {
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    font-size: 19px;
+    padding: 1px 10px 1px 10px;
+    background: @background;
+  }
+
+  #idle_inhibitor:hover {
+    color: @colorhover;
+    text-shadow: @colorhover 0px 0px 8px; 
+  }
+
+  #idle_inhibitor.activated {
+    color: @colorhover;
+  }
+
   #custom-exit {
-      transition: color 0.15s ease; /* transición suave de 0.5 segundos */
       border-radius: 55px;
-      padding: 3px 9px 3px 6px;
+      padding: 2px 9px 2px 6px;
       margin: 5px 5px 5px 3px;
   }
 
   #custom-exit:hover {
-      background-color:  rgb(70, 71, 92);
-      color:#db6c82;
+      /* background-color:  rgb(70, 71, 92); */
+      color:@colorhover;
+  }
+
+/* Workspaces */
+  
+  #workspaces {
+    background-color:rgba(0,0,0,0.9);
+    font-size: 15px;
+    border-radius: 15px;
+    padding: 1px 10px 1px 10px;
+    margin: 3px 4px 3px 20px;
+  }
+    
+  #workspaces .active * {
+    color: @color6;
+    font-size: 20px;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 2px 0px 2px;
+  }
+  
+  #workspaces button {
+    border-top: 0px solid transparent;
+    /* To compensate for the top border and still have vertical centering */
+    padding-bottom: 0px;
+    padding-left: 8px;
+    padding-right: 8px;
+    color: #bbbbbb;
+  }
+  
+  #workspaces button:hover {
+    /* Reset all hover styles */
+    background: inherit;
+    box-shadow: inherit;
+    text-shadow: inherit;
+  }
+  
+  #workspaces button.urgent {
+    /*border-color: #2f343a; */
+    color: #ffffff; /* Sway palette: urgent/text */
+    background-color: #900000; /* Sway palette: urgent/background */
   }

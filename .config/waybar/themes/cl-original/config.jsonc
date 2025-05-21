@@ -10,7 +10,7 @@
     "margin-top": 0,
     "margin-bottom": 0,
     "spacing": 0,
-    
+ 
     // Load Modules
     "include": [
         "~/.config/waybar/modules.jsonc"
@@ -23,9 +23,9 @@
 
     // Modules Center
     "modules-center": [
-        "custom/archlogo",
-        "clock",
-        "idle_inhibitor"
+        "group/logo-clock-idle"
+        // "clock",
+        // "idle_inhibitor"
     ],
 
     // Modules Right
@@ -36,3 +36,5 @@
         "custom/exit"
     ]
 }
+
+

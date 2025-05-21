@@ -19,9 +19,10 @@
     },
 
     "custom/archlogo": {
-        "format": "<span color=\"#1793d1\"></span> <span color=\"#777777\"></span>",
+        "format": "",
         "on-click": "kinfocenter",
-        "tooltip": false
+        "tooltip": true,
+        "tooltip-format": "Show system information"
     },
 
 
@@ -218,7 +219,6 @@
 
     // System tray
     "tray": {
-        "icon-size": 21,
         "spacing": 5
     },
 
@@ -299,18 +299,71 @@
         "on-click-right": "nm-conection-editor"
     },
 
-
     "clock": {
-        "interval": 15,
-        "format": "{:%H:%M }",
-        "format-alt": "{%a. :%Y-%m-%d}",
-        "tooltip": false
+        "format": "  {:%H:%M} ",
+        "format-alt": "  {:%A, %d %B %Y} ",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "weeks-pos": "left",
+            "on-scroll": 1,
+            "format": {
+                "months": "<span color='#a6e3a1'><b>{}</b></span>",
+                "days": "<span color='#f9e2af'>{}</span>",
+                "weeks": "<span color='#cba6f7'>W{}</span>",
+                "weekdays": "<span color='#89b4fa'><b>{}</b></span>",
+                "today": "<span color='#f38ba8'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click": "mode",
+            "on-click-right": "swaymsg exec alacritty -e calcurse",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
     },
 
-    // Power Menu
+    // "clock": {
+    //     "format": "    {:%H:%M}",
+    //     "format-alt": "󰸗  {:%A, %B %d, %Y}",
+    //     "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    //     "calendar": {
+    //                 "mode"          : "year",
+    //                 "mode-mon-col"  : 3,
+    //                 "weeks-pos"     : "right",
+    //                 "on-scroll"     : 1,
+    //                 "format": {
+    //                           "months":     "<span color='#ffead3'><b>{}</b></span>",
+    //                           "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+    //                           "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+    //                           "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+    //                           "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+    //                           }
+    //                 },
+    //     "actions":  {
+    //                 "on-click-right": "mode",
+    //                 "on-scroll-up": "tz_up",
+    //                 "on-scroll-down": "tz_down",
+    //                 "on-scroll-up": "shift_up",
+    //                 "on-scroll-down": "shift_down"
+    //                 }
+    // },
+
     "custom/exit": {
         "format": "⏻",
         "on-click": "~/.config/hypr/scripts/wlogout.sh",
         "tooltip-format": "Power Menu"
+    },
+
+
+    "group/logo-clock-idle": {
+      "orientation": "horizontal",
+      "modules": [
+        "custom/archlogo",
+        "clock",
+        "idle_inhibitor"
+      ]
     }
 }
+
