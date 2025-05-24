@@ -40,7 +40,7 @@ unalias zi 2>/dev/null
 eval "$(zoxide init zsh)"                                            # zoxide for better cd navigation
 eval "$(fzf --zsh)"                                                  # fuzzyfinder
 eval "$(oh-my-posh init zsh --config $ZSH_CONFIG/ohmyposh/zen.toml)" # Prompt
-#
+
 # Activate to allow starting GUI apps from Zsh
 if [ -n "$DBUS_SESSION_BUS_ADDRESS" ]; then
   dbus-update-activation-environment --all

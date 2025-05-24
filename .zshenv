@@ -15,7 +15,6 @@ export JAVA_HOME=/usr/lib/jvm/java-"$JAVA_VERSION"-openjdk
 export PATH=$JAVA_HOME/bin:$PATH
 
 export ROCKU=/usr/share/wordlists/rockyou.txt
-export TERM=alacritty
 
 export CACHE_DIR=$HOME/.cache/
 export PATH="$HOME/.local/bin:$PATH"
