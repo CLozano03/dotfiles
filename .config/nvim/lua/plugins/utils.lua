@@ -41,14 +41,23 @@ return {
   },
 
   -- Better Nvim user
-  {
-    'tris203/precognition.nvim',
-    event = 'VeryLazy',
-    opts = {},
-  },
+  -- {
+  --   'tris203/precognition.nvim',
+  --   event = 'VeryLazy',
+  --   opts = {},
+  -- },
   {
     'Weyaaron/nvim-training',
     event = 'VeryLazy',
     pin = true,
+  },
+  {
+    'm4xshen/hardtime.nvim',
+    lazy = false,
+    dependencies = { 'MunifTanjim/nui.nvim' },
+    opts = {},
+  },
+  {
+    'ThePrimeagen/vim-be-good',
   },
 }
