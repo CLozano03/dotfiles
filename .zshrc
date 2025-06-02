@@ -1,5 +1,9 @@
 #!/bin/sh
 
+if [[ -z "$TMUX" ]]; then
+  tmux new-session -A -s main
+fi
+
 # Shortcut to this dotfiles path is $DOTFILES
 export DOTFILES="${HOME}/dotfiles"
 export XDG_CONFIG_HOME="${HOME}/.config"
@@ -11,7 +15,7 @@ export VI_MODE=1 # 1 if using vim mode. Loaded in config.zsh
 source "${ZSH_CONFIG}/config.zsh"
 
 # Installing (if not) and loading Zinit, a plugin manager for zsh
-# Dir to store ziit configuration
+# Dir to store zinit configuration
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
@@ -47,7 +51,3 @@ if [ -n "$DBUS_SESSION_BUS_ADDRESS" ]; then
 fi
 
 fastfetch # Load fastfetch when start. Comment this line if annoying.
-
-if [[ -z "$TMUX" ]]; then
-  tmux new-session -A -s main
-fi
