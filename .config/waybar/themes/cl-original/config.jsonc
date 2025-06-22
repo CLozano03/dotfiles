@@ -30,9 +30,7 @@
 
     // Modules Right
     "modules-right": [
-        "tray",
-        "pulseaudio",
-        "battery", 
+        "group/bt-vol-bat",
         "custom/exit"
     ]
 }

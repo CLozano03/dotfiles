@@ -5,16 +5,18 @@
         "active-only": true,
         "all-outputs": false,
         "format": "{icon}",
-        "format-icons": {
-        "1": "󰈹",
-        "2": "",
-        "3": "󰨞",
-        "4": "󰈔",
-        "5": "",
-        "6": ""
-        },
+        // "format-icons": {
+        // // "1": "󰈹",
+        // // "2": "",
+        // // "3": "󰨞",
+        // // "4": "󰈔",
+        // // "5": "",
+        // // "6": ""
+        // },
         "persistent-workspaces": {
-            "*": 6
+            "1": [],
+            "2": [],
+            "3": [],
         }       
     },
 
@@ -182,8 +184,8 @@
             "deactivated": "󰨙"
         },
         "tooltip": true,
-        "tooltip-format-activated": "Idle inhibitor:  Activated",
-        "tooltip-format-deactivated": "Idle inhibitor:  Deactivated"
+        "tooltip-format-activated": "Idle inhibitor: Activated",
+        "tooltip-format-deactivated": "Idle inhibitor: Deactivated"
     },
 
     // System
@@ -222,30 +224,22 @@
         "spacing": 5
     },
 
-     // Pulseaudio
-     "pulseaudio": {
+    // Pulseaudio
+    "pulseaudio": {
         "scroll-step": 2,
-        "format": "{icon}   {volume}%",
-        "format-muted": "󰝟  Muted", // Icon: volume-mute
+        "format": "{icon}",
+        "format-muted": " ", // Icon: volume-mute
         "format-icons": {
-        "headphones": "", // Icon: headphones
-        "handsfree": "", // Icon: headset
-        "headset": "󰂯", // Bluetooth
-        "phone": "", // Icon: phone
-        "portable": "", // Icon: phone
-        "car": "", // Icon: car
         "default": [
-            "", "", ""
+            " ", " "
         ]
-        },
-        "on-click": "pavucontrol"
     },
+    "on-click": "pavucontrol"
+},
     
     // Bluetooth
     "bluetooth": {
-        "format": " {status}",
-        "format-disabled": "",
-        "format-off": "",
+        "format": "",
         "interval": 30,
         "on-click": "blueman-manager",
         "format-no-controller": ""
@@ -279,7 +273,6 @@
         "charging": [
           "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉","󰂉", "󰂊", "󰂋", "󰂅"
         ],
-        "full": [ "󰁹" ]
       },
       "tooltip": true
     },
@@ -364,6 +357,14 @@
         "clock",
         "idle_inhibitor"
       ]
+    },
+    "group/bt-vol-bat": {
+        "orientation": "horizontal",
+        "modules": [
+            "tray",
+            "bluetooth",
+            "pulseaudio",
+            "battery"
+        ]
     }
 }
-
