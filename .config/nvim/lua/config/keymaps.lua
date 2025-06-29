@@ -19,10 +19,10 @@ set_keymap('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnosti
 set_keymap('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- TIP: Disable arrow keys in normal mode
-set_keymap('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
-set_keymap('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
-set_keymap('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
-set_keymap('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+-- set_keymap('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+-- set_keymap('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
+-- set_keymap('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
+-- set_keymap('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
 -- Execute current lua line
 set_keymap('v', '<leader>xx', ':lua<CR>')

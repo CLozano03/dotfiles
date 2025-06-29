@@ -43,7 +43,7 @@ return {
         dashboard.button('q', '  Quit', ':qa<CR>'),
       }
 
-      -- Footer con información
+      -- Footer with info
       local function footer()
         local stats = require('lazy').stats()
         return 'Loaded ' .. stats.count .. ' plugins in ' .. string.format('%.2f', stats.startuptime) .. 'ms'
@@ -51,7 +51,7 @@ return {
       dashboard.section.footer.val = footer
       dashboard.section.footer.opts.hl = 'Comment'
 
-      -- Alineación centrada
+      -- Align center
       dashboard.opts.layout = {
         { type = 'padding', val = 4 },
         dashboard.section.header,
@@ -71,9 +71,12 @@ return {
     config = function()
       require('lualine').setup {
         options = {
-          theme = 'auto', -- intenta adaptar colores automáticamente
-          section_separators = '',
-          component_separators = '',
+          icons_enabled = true,
+          theme = 'auto',
+          -- section_separators = '',
+          -- component_separators = '',
+          component_separators = { left = '', right = '' },
+          section_separators = { left = '', right = '' },
         },
       }
     end,
@@ -142,101 +145,10 @@ return {
     },
   },
 
-  { -- Useful plugin to show you pending keybinds.
-    'folke/which-key.nvim',
-    event = 'VimEnter', -- Sets the loading event to 'VimEnter'
-    opts = {
-      icons = {
-        -- set icon mappings to true if you have a Nerd Font
-        mappings = vim.g.have_nerd_font,
-        -- If you are using a Nerd Font: set icons.keys to an empty table which will use the
-        -- default whick-key.nvim defined Nerd Font icons, otherwise define a string table
-        keys = vim.g.have_nerd_font and {} or {
-          Up = '<Up> ',
-          Down = '<Down> ',
-          Left = '<Left> ',
-          Right = '<Right> ',
-          C = '<C-…> ',
-          M = '<M-…> ',
-          D = '<D-…> ',
-          S = '<S-…> ',
-          CR = '<CR> ',
-          Esc = '<Esc> ',
-          ScrollWheelDown = '<ScrollWheelDown> ',
-          ScrollWheelUp = '<ScrollWheelUp> ',
-          NL = '<NL> ',
-          BS = '<BS> ',
-          Space = '<Space> ',
-          Tab = '<Tab> ',
-          F1 = '<F1>',
-          F2 = '<F2>',
-          F3 = '<F3>',
-          F4 = '<F4>',
-          F5 = '<F5>',
-          F6 = '<F6>',
-          F7 = '<F7>',
-          F8 = '<F8>',
-          F9 = '<F9>',
-          F10 = '<F10>',
-          F11 = '<F11>',
-          F12 = '<F12>',
-        },
-      },
-      -- Document existing key chains
-      spec = {
-        { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
-        { '<leader>d', group = '[D]ocument' },
-        { '<leader>r', group = '[R]ename' },
-        { '<leader>s', group = '[S]earch' },
-        { '<leader>w', group = '[W]orkspace' },
-        { '<leader>t', group = '[T]oggle' },
-        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
-      },
-    },
-  },
-
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  { 'tpope/vim-sleuth' }, -- Detect tabstop and shiftwidth automatically
 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
-
-  {
-    'ThePrimeagen/harpoon',
-    event = { 'VeryLazy' },
-    branch = 'harpoon2',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-    },
-    config = function()
-      local harpoon = require 'harpoon'
-      harpoon:setup()
-      vim.keymap.set('n', '<leader>a', function()
-        harpoon:list():add()
-      end, { desc = 'Harpoon Add current file' })
-      vim.keymap.set('n', '<C-e>', function()
-        harpoon.ui:toggle_quick_menu(harpoon:list())
-      end, { desc = 'Harpoon Open quick menu' })
-      vim.keymap.set('n', '<A-h>', function()
-        harpoon:list():select(1)
-      end, { desc = 'Harpoon Go to 1' })
-      vim.keymap.set('n', '<A-j>', function()
-        harpoon:list():select(2)
-      end, { desc = 'Harpoon Go to 2' })
-      vim.keymap.set('n', '<A-k>', function()
-        harpoon:list():select(3)
-      end, { desc = 'Harpoon Go to 3' })
-      vim.keymap.set('n', '<A-l>', function()
-        harpoon:list():select(4)
-      end, { desc = 'Harpoon Go to 4' })
-      -- Toggle previous & next buffers stored within Harpoon list
-      -- vim.keymap.set("n", "<C-p>", function()
-      --   harpoon:list():prev()
-      -- end, { desc = "Harpoon Go to previous" })
-      -- vim.keymap.set("n", "<C-n>", function()
-      --   harpoon:list():next()
-      -- end, { desc = "Harpoon Go to next" })
-    end,
-  },
 
   { -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
@@ -244,21 +156,5 @@ return {
     -- See `:help ibl`
     main = 'ibl',
     opts = {},
-  },
-  {
-    'nvim-neo-tree/neo-tree.nvim',
-    branch = 'v3.x',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
-      'MunifTanjim/nui.nvim',
-      -- {"3rd/image.nvim", opts = {}}, -- Optional image support in preview window: See `# Preview Mode` for more information
-    },
-    lazy = false, -- neo-tree will lazily load itself
-    ---@module "neo-tree"
-    ---@type neotree.Config?
-    opts = {
-      -- fill any relevant options here
-    },
   },
 }

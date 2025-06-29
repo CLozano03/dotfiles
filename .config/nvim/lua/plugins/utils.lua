@@ -1,5 +1,9 @@
 return {
   {
+    'ThePrimeagen/vim-be-good',
+    cmd = 'VimBeGood',
+  },
+  {
     'ellisonleao/dotenv.nvim',
     event = 'VeryLazy',
     opts = {},
@@ -32,11 +36,19 @@ return {
     'mistricky/codesnap.nvim',
     build = 'make',
     keys = {
-      { '<leader>cc', '<cmd>CodeSnap<cr>', mode = 'x', desc = 'Save selected code snapshot into clipboard' },
-      { '<leader>cs', '<cmd>CodeSnapSave<cr>', mode = 'x', desc = 'Save selected code snapshot in ~/Pictures' },
-    },
-    opts = {
-      has_breadcrumbs = true,
+      {
+        'mistricky/codesnap.nvim',
+        build = 'make',
+        keys = {
+          { '<leader>cc', '<cmd>CodeSnap<cr>', mode = 'x', desc = 'Save selected code snapshot into clipboard' },
+          { '<leader>cs', '<cmd>CodeSnapSave<cr>', mode = 'x', desc = 'Save selected code snapshot in ~/Pictures' },
+        },
+        opts = {
+          has_breadcrumbs = false, -- display file path on top of the snap
+          bg_theme = 'default',
+          watermark = 'holaa',
+        },
+      },
     },
   },
 
@@ -56,8 +68,5 @@ return {
     lazy = false,
     dependencies = { 'MunifTanjim/nui.nvim' },
     opts = {},
-  },
-  {
-    'ThePrimeagen/vim-be-good',
   },
 }
