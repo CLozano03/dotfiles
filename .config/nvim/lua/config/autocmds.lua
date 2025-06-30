@@ -17,13 +17,14 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+-- Wether to use `foldmethod=indent` for Python files
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'python',
   callback = function()
     -- use pep8 standards
     -- folds based on indentation https://neovim.io/doc/user/fold.html#fold-indent
     -- if you are a heavy user of folds, consider using `nvim-ufo`
-    -- vim.opt_local.foldmethod = "indent"
+    -- vim.opt_local.foldmethod = 'indent'
   end,
 })
 
@@ -32,5 +33,18 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = '*.yml.sample',
   callback = function()
     vim.bo.filetype = 'yaml'
+  end,
+})
+
+local function augroup(name)
+  return vim.api.nvim_create_augroup('lazyvim_' .. name, { clear = true })
+end
+
+vim.api.nvim_create_autocmd('VimEnter', {
+  group = augroup 'autoupdate',
+  callback = function()
+    require('lazy').update {
+      show = false,
+    }
   end,
 })
