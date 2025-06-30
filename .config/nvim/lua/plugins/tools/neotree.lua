@@ -18,6 +18,10 @@ return {
         hide_gitignored = true,
       },
     },
+    source_selector = {
+      winbar = false,
+      statusline = false,
+    },
     window = {
       mappings = {
         ['<space>'] = 'none',

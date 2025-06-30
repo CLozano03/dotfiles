@@ -16,7 +16,12 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local spec = {
-  { import = 'plugins' },
+  { import = 'plugins.python' },
+  { import = 'plugins.editing' },
+  { import = 'plugins.ui' },
+  { import = 'plugins.tools' },
+  { import = 'plugins.coding' },
+  { import = 'plugins.lsp' },
 }
 
 -- Setup lazy.nvim

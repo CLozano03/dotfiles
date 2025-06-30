@@ -1,26 +1,15 @@
 return {
   {
-    'ThePrimeagen/vim-be-good',
-    cmd = 'VimBeGood',
-  },
-  {
     'ellisonleao/dotenv.nvim',
     event = 'VeryLazy',
     opts = {},
   },
-
-  {
-    'christoomey/vim-tmux-navigator',
-    lazy = false,
-  },
-
   {
     'iamcco/markdown-preview.nvim',
     cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
     ft = { 'markdown' },
     build = ':call mkdp#util#install()',
   },
-
   {
     'amitds1997/remote-nvim.nvim',
     version = '*', -- Pin to GitHub releases
@@ -31,7 +20,6 @@ return {
     },
     config = true,
   },
-
   {
     'mistricky/codesnap.nvim',
     build = 'make',
@@ -46,27 +34,9 @@ return {
         opts = {
           has_breadcrumbs = false, -- display file path on top of the snap
           bg_theme = 'default',
-          watermark = 'holaa',
+          watermark = '',
         },
       },
     },
-  },
-
-  -- Better Nvim user
-  -- {
-  --   'tris203/precognition.nvim',
-  --   event = 'VeryLazy',
-  --   opts = {},
-  -- },
-  {
-    'Weyaaron/nvim-training',
-    event = 'VeryLazy',
-    pin = true,
-  },
-  {
-    'm4xshen/hardtime.nvim',
-    lazy = false,
-    dependencies = { 'MunifTanjim/nui.nvim' },
-    opts = {},
   },
 }

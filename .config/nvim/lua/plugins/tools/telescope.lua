@@ -85,7 +85,7 @@ return {
         function()
           telescope_builtin.find_files { cwd = vim.fn.stdpath 'config' }
         end,
-        desc = ' [S]earch [N]eovim files',
+        desc = ' [S]earch [N]vim config files',
         mode = 'n',
       },
 
