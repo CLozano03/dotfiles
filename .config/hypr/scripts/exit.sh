@@ -1,4 +1,4 @@
 #!/bin/sh
-sleep 1
+sleep 0.5
 
-systemctl --user stop hyprland.service
+hyprctl dispatch exit

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Get the current battery details
 BATTERY_INFO=$(upower -i $(upower -e | grep BAT))

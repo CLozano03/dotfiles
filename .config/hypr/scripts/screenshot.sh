@@ -23,7 +23,7 @@ case $1 in
         fi
 
         command cat "$DIR$NAME" | wl-copy
-        #notify-send "Screenshot created and copied to clipboard" "Mode: Selected area"
+        notify-send "Screenshot created and copied to clipboard" "Mode: Selected area"
         swappy  -f "$DIR$NAME"
 
 
@@ -37,7 +37,7 @@ case $1 in
         fi
 
         command cat "$DIR$NAME" | wl-copy
-        #notify-send "Screenshot created and copied to clipboard" "Mode: Fullscreen"
+        notify-send "Screenshot created and copied to clipboard" "Mode: Fullscreen"
         swappy -f "$DIR$NAME"
     ;;
     3)
@@ -50,7 +50,7 @@ case $1 in
         fi
 
         command cat "$DIR$NAME" | wl-copy
-        #notify-send "Screenshot created and copied to clipboard" "Mode: Fullscreen"
+        notify-send "Screenshot created and copied to clipboard" "Mode: Fullscreen"
         swappy -f "$DIR$NAME"
     ;;
 esac

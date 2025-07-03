@@ -58,10 +58,30 @@ echo ":: Path of current wallpaper copied to $cache_file"
 wallpaper_filename=$(basename $wallpaper)
 echo ":: Wallpaper Filename: $wallpaper_filename"
 
-# Execute pywal
-# echo ":: Execute pywal with $wallpaper"
-# wal -q -i $wallpaper
-# source "$cache_dir/wal/colors.sh"
+# -----------------------------------------------------
+# Generate Pywal colors
+# -----------------------------------------------------
+# echo ":: Generating Pywal colors from $wallpaper"
+# wal -q -i "$wallpaper"
+# wal -q -i "$wallpaper" -o "$HOME/.cache/wal/tmux.conf"
+
+# # Optional: Copy color values to custom JSON or source file if needed
+# cp "$HOME/.cache/wal/colors.sh" "$cache_dir/colors.sh"
+# cp "$HOME/.cache/wal/colors.json" "$cache_dir/colors.json"
+
+echo ":: Generating Pywal colors from $wallpaper"
+wal -q -i "$wallpaper"
+wal -q -i "$wallpaper" -o "$HOME/.config/wal/tmux.conf"
+pywalfox update # Update firefox theme
+
+tmux source-file "$HOME/.cache/wal/tmux.conf"
+tmux source-file "$HOME/.tmux.conf"
+tmux display-message "Tmux colors reloaded!"
+
+
+# Updating dunst theme with pywal
+update_dunst
+
 
 # ----------------------------------------------------- 
 # Write hyprpaper.conf
@@ -79,17 +99,9 @@ fi
 # Create symlink to current wallpaper
 ln -sf $wallpaper $HOME/.config/hypr/current_wallpaper 
 
-# ----------------------------------------------------- 
-# Reload Waybar
-# -----------------------------------------------------
-sh ~/dotfiles/waybar/launch.sh &> /dev/null
+# Reload all 
+reload # Calling script reload of ~/.local/bin
 
-# ----------------------------------------------------- 
-# Create rasi file
-# ----------------------------------------------------- 
-if [ ! -f $rasi_file ] ;then
-    touch $rasi_file
-fi
-echo "* { current-image: url(\"$blurred_wallpaper\", height); }" > "$rasi_file"
+
 
 exit 0
