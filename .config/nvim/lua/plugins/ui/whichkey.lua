@@ -6,7 +6,6 @@ return {
       { '<leader>b', group = 'De[B]ug' },
       { '<leader>c', group = '[C]ode' },
       { '<leader>d', group = '[D]ocument' },
-      { '<leader>e', group = 'Neo-tree' },
       { '<leader>h', group = 'Git [H]unk' },
       { '<leader>r', group = '[R]ename' },
       { '<leader>s', group = '[S]earch' },

@@ -1,5 +1,6 @@
 local opt = vim.opt
--- Set <space> as the leader key
+
+-- Set the leader key
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -11,8 +12,8 @@ vim.g.have_nerd_font = true
 --  For more options, you can see `:help option-list`
 
 -- Use relative numbers
-vim.opt.relativenumber = true
-vim.opt.number = true
+opt.relativenumber = true
+opt.number = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 opt.mouse = 'a'
@@ -50,14 +51,14 @@ opt.splitbelow = true
 opt.list = true
 opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
--- Preview substitutions live, as you type!
+-- Preview substitutions live
 opt.inccommand = 'split'
 
 -- Show which line your cursor is on
 opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-opt.scrolloff = 10
+opt.scrolloff = 5
 
 -- Tab settings
 opt.expandtab = true
