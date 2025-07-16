@@ -8,15 +8,17 @@ return {
     event = 'VeryLazy',
     pin = true,
   },
-  -- {
-  --   'm4xshen/hardtime.nvim',
-  --   lazy = false,
-  --   dependencies = { 'MunifTanjim/nui.nvim' },
-  --   opts = {},
-  -- },
-  -- {
-  --   'tris203/precognition.nvim',
-  --   event = 'VeryLazy',
-  --   opts = {},
-  -- },
+  {
+    'm4xshen/hardtime.nvim',
+    enabled = true,
+    lazy = false,
+    dependencies = { 'MunifTanjim/nui.nvim' },
+    opts = {},
+  },
+  {
+    'tris203/precognition.nvim',
+    enabled = false,
+    event = 'VeryLazy',
+    opts = {},
+  },
 }

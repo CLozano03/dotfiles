@@ -48,3 +48,13 @@ vim.api.nvim_create_autocmd('VimEnter', {
     }
   end,
 })
+
+--Change automatically cwd when opens a dir
+vim.api.nvim_create_autocmd('VimEnter', {
+  callback = function()
+    local dir = vim.fn.argv(0)
+    if dir and vim.fn.isdirectory(dir) == 1 then
+      vim.cmd('cd ' .. dir)
+    end
+  end,
+})
