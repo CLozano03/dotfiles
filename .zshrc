@@ -49,5 +49,3 @@ eval "$(oh-my-posh init zsh --config $ZSH_CONFIG/ohmyposh/zen.toml)" # Prompt
 if [ -n "$DBUS_SESSION_BUS_ADDRESS" ]; then
   dbus-update-activation-environment --all
 fi
-
-fastfetch # Load fastfetch when start. Comment this line if annoying.
