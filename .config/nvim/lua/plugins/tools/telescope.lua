@@ -1,4 +1,13 @@
 local telescope_builtin = require 'telescope.builtin'
+
+local function telescope_cwd()
+   if vim.bo.filetype == 'oil' then
+      return require('oil').get_current_dir()
+   else
+      return vim.fn.getcwd()
+   end
+end
+
 return {
    { -- Fuzzy Finder (files, lsp, etc)
       'nvim-telescope/telescope.nvim',
@@ -76,10 +85,24 @@ return {
       keys = {
          { '<leader>sh', telescope_builtin.help_tags, desc = ' [S]earch [H]elp', 'n' },
          { '<leader>sk', telescope_builtin.keymaps, desc = ' [S]earch [K]eymaps', mode = 'n' },
-         { '<leader>sf', telescope_builtin.find_files, desc = ' [S]earch [F]iles', mode = 'n' },
+         {
+            '<leader>sf',
+            function()
+               telescope_builtin.find_files { cwd = telescope_cwd() }
+            end,
+            desc = ' [S]earch [F]iles',
+            mode = 'n',
+         },
          { '<leader>ss', telescope_builtin.builtin, desc = ' [S]earch [S]elect Telescope', mode = 'n' },
          { '<leader>sw', telescope_builtin.grep_string, desc = ' [S]earch current [W]ord', mode = 'n' },
-         { '<leader>sg', telescope_builtin.live_grep, desc = ' [S]earch by [G]rep', mode = 'n' },
+         {
+            '<leader>sg',
+            function()
+               telescope_builtin.live_grep { cwd = telescope_cwd() }
+            end,
+            desc = ' [S]earch by [G]rep',
+            mode = 'n',
+         },
          { '<leader>sd', telescope_builtin.diagnostics, desc = ' [S]earch [D]iagnostics', mode = 'n' },
          { '<leader>sr', telescope_builtin.resume, desc = ' [S]earch [R]esume', mode = 'n' },
          { '<leader>s.', telescope_builtin.oldfiles, desc = ' [S]earch Recent Files ("." for repeat)', mode = 'n' },
