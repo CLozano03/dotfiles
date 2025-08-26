@@ -65,3 +65,12 @@ opt.expandtab = true
 opt.shiftwidth = 2
 opt.tabstop = 2
 opt.softtabstop = 2
+
+-- Diagnostics
+vim.diagnostic.config {
+   virtual_text = true,
+   signs = true,
+   underline = true,
+   update_in_insert = false,
+   severity_sort = true,
+}

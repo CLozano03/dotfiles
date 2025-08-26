@@ -21,4 +21,16 @@ return {
   --     -- vim.cmd.hi 'Comment gui=none'
   --   end,
   -- },
+  {
+    'brenoprata10/nvim-highlight-colors',
+    event = 'BufReadPre',
+    enabled = true,
+    config = function()
+      require('nvim-highlight-colors').setup {
+        render = 'background',
+        enable_named_colors = true,
+        enable_tailwind = true,
+      }
+    end,
+  },
 }

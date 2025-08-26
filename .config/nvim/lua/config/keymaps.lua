@@ -26,7 +26,14 @@ set_keymap('n', '<leader>xx', ':.lua<CR>')
 set_keymap('n', '<leader>j', '<cmd>cnext<cr>', { desc = 'Go to next quickfix' })
 set_keymap('n', '<leader>k', '<cmd>cprev<cr>', { desc = 'Go to previous quickfix' })
 set_keymap('v', '<Leader>p', '"_dP', { desc = 'Delete to register _' })
---
--- -- Yank to system clipboard
+
+set_keymap('n', '<C-d>', '<Cmd>normal! <C-d>zz<CR>', { noremap = true, silent = true })
+set_keymap('n', '<C-u>', '<Cmd>normal! <C-u>zz<CR>', { noremap = true, silent = true })
+
+-- System clipboard
 set_keymap({ 'n', 'v' }, '<leader>y', '"+y', { desc = 'Yank to system clipboard' })
 set_keymap({ 'n', 'v' }, '<leader>p', '"+p', { desc = 'Paste from system clipboard' })
+
+vim.keymap.set('n', '<leader>qf', function()
+   vim.diagnostic.open_float()
+end, { desc = 'Show diagnostics in float' })
