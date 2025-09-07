@@ -60,6 +60,14 @@ return {
             --  All the info you're looking for is in `:help telescope.setup()`
             --
             defaults = {
+               file_ignore_patterns = {
+                  'venv/',
+                  'node_modules/',
+                  '.git/',
+                  '__pycache__/',
+                  '.mypy_cache/',
+                  '.pytest_cache/',
+               },
                mappings = {
                   i = { ['<c-enter>'] = 'to_fuzzy_refine' },
                },
