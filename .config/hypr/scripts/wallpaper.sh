@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ -z $XDG_CONFIG_HOME ]; then
-    export $XDG_CONFIG_HOME=$HOME/.config
+    export XDG_CONFIG_HOME=$HOME/.config
 fi
 
 # Dirs
