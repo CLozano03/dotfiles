@@ -8,11 +8,11 @@ return {
          local function toggle_copilot_status()
             if vim.g.copilot_is_enabled then
                vim.cmd 'Copilot disable'
-               print 'Copilot disabled.'
+               print 'Copilot disabled'
                vim.g.copilot_is_enabled = false
             else
                vim.cmd 'Copilot enable'
-               print 'Copilot enabled.'
+               print 'Copilot enabled'
                vim.g.copilot_is_enabled = true
             end
          end

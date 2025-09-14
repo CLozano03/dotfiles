@@ -1,29 +1,6 @@
 return {
-   {
-      'mfussenegger/nvim-lint', -- Referencia al plugin nvim-lint
-      ft = 'python', -- Solo aplica si el filetype es Python
-      opts = {
-         linters_by_ft = {
-            python = { 'ruff' }, -- ¡Esto es lo que añade 'ruff' como linter para Python!
-         },
-      },
-   },
-
-   -- Formatting
-   {
-      'stevearc/conform.nvim',
-      opts = { formatters_by_ft = {
-         python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
-      } },
-   },
 
    -- Debugging
-   {
-      'mfussenegger/nvim-dap',
-      dependencies = {
-         'mfussenegger/nvim-dap-python',
-      },
-   },
    {
       'mfussenegger/nvim-dap-python',
       ft = 'python',
@@ -181,25 +158,19 @@ return {
 
    {
       'linux-cultist/venv-selector.nvim',
-      branch = 'regexp',
-      lazy = false,
       dependencies = {
+         'nvim-tree/nvim-web-devicons',
          'neovim/nvim-lspconfig',
          'mfussenegger/nvim-dap',
          'mfussenegger/nvim-dap-python',
          'nvim-telescope/telescope.nvim',
       },
-      config = function()
-         require('venv-selector').setup {
-            auto_refresh = true,
-            search = {
-               anaconda_envs = { '~/anaconda3/envs' },
-               poetry_path = '~/.cache/pypoetry/virtualenvs',
-            },
-         }
-      end,
       keys = {
          { ',v', '<cmd>VenvSelect<cr>', desc = 'Seleccionar venv' },
+      },
+      opts = {
+         name = 'venv',
+         auto_refresh = true,
       },
    },
 
@@ -209,27 +180,22 @@ return {
       event = 'VeryLazy',
       config = function()
          local iron = require 'iron.core'
+         local python_cmd = (vim.fn.executable 'ipython' == 1) and { 'ipython' } or { 'python3' }
 
          iron.setup {
             config = {
-               -- Whether a repl should be discarded or not
                scratch_repl = true,
-               -- Your repl definitions come here
                repl_definition = {
                   sh = {
                      command = { 'zsh' },
                   },
                   python = {
-                     command = { 'ipython', '--no-autoindent' }, -- { "ipython", "--no-autoindent" } or { "python" }
+                     command = python_cmd,
                      format = require('iron.fts.common').bracketed_paste_python,
                   },
                },
-               -- How the repl window will be displayed
-               -- See below for more information
-               repl_open_cmd = 'horizontal botright 15 split',
+               repl_open_cmd = 'vertical botright 65 split',
             },
-            -- Iron doesn't set keymaps by default anymore.
-            -- You can set them here or manually add keymaps to the functions in iron.core
             keymaps = {
                send_motion = '<space>xc',
                visual_send = '<space>xv',
@@ -240,26 +206,91 @@ return {
                cr = '<space>x<cr>',
                interrupt = '<space>x<space>',
                exit = '<space>xq',
-               -- clear = '<space>cl',
             },
-            -- If the highlight is on, you can change how it looks
-            -- For the available options, check nvim_set_hl
             highlight = {
                italic = true,
             },
-            ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
+            ignore_blank_lines = true,
          }
 
-         -- iron also has a list of commands, see :h iron-commands for all available commands
+         -- Basics Iron keymaps
          vim.keymap.set('n', '<space>rs', '<cmd>IronRepl<cr>')
          vim.keymap.set('n', '<space>rr', '<cmd>IronRestart<cr>')
          vim.keymap.set('n', '<space>rf', '<cmd>IronFocus<cr>')
          vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
+
+         -- Execute cell and move to next cell
+         local function execute_cell_and_next()
+            local start_line = vim.fn.search('^# %%', 'bnW')
+            if start_line == 0 then
+               start_line = 1
+            end
+            local end_line = vim.fn.search('^# %%', 'nW')
+            if end_line == 0 then
+               end_line = vim.fn.line '$' + 1
+            end
+
+            local lines = vim.api.nvim_buf_get_lines(0, start_line, end_line - 1, false)
+            iron.send(nil, lines)
+
+            if end_line <= vim.fn.line '$' then
+               vim.fn.cursor(end_line, 1)
+            end
+         end
+
+         -- Map funcion for executing cell and moving to next
+         vim.keymap.set('n', '<space>xn', execute_cell_and_next, { noremap = true, silent = true, desc = 'Execute cell and go to next' })
+
+         -- Execute current cell without moving
          vim.keymap.set('n', '<space>xx', function()
-            vim.cmd.normal ' xciN'
-            vim.cmd.normal 'vaN'
-            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<esc>', true, false, true), 'n', true)
-         end, { noremap = true, silent = true })
+            local start_line = vim.fn.search('^# %%', 'bnW')
+            if start_line == 0 then
+               start_line = 1
+            end
+            local end_line = vim.fn.search('^# %%', 'nW')
+            if end_line == 0 then
+               end_line = vim.fn.line '$' + 1
+            end
+            local lines = vim.api.nvim_buf_get_lines(0, start_line, end_line - 1, false)
+            iron.send(nil, lines)
+         end, { noremap = true, silent = true, desc = 'Execute current cell' })
       end,
+   },
+   {
+      'GCBallesteros/jupytext.nvim',
+      config = function()
+         require('jupytext').setup {
+            style = 'hydrogen',
+            output_extension = 'auto',
+            force_ft = nil,
+            update_nb_on_save = true,
+         }
+      end,
+   },
+   {
+      'preservim/vim-markdown',
+      ft = 'markdown',
+      config = function()
+         vim.g.vim_markdown_folding_disabled = 1
+         vim.g.vim_markdown_conceal = 0
+         vim.g.vim_markdown_conceal_code_blocks = 0
+      end,
+   },
+   {
+      'mfussenegger/nvim-lint',
+      ft = 'python', -- Only for Python files
+      opts = {
+         linters_by_ft = {
+            python = { 'ruff' },
+         },
+      },
+   },
+
+   -- Formatting
+   {
+      'stevearc/conform.nvim',
+      opts = { formatters_by_ft = {
+         python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
+      } },
    },
 }
