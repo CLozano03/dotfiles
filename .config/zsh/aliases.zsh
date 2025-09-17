@@ -10,15 +10,11 @@ alias bigfiles="sudo ncdu --exclude /proc --exclude /sys --exclude /dev --exclud
 
 # Edit config files
 alias zshconf=""$EDITOR" "$HOME"/.zshrc"
-alias ohmyzsh=""$EDITOR" "$HOME"/.oh-my-zsh"
-alias alaconf=""$EDITOR" "$XDG_CONFIG_HOME"/alacritty/alacritty.toml"
 alias kittyconf=""$EDITOR" "$XDG_CONFIG_HOME"/kitty/kitty.conf"
-alias ffconf=""$EDITOR" "$XDG_CONFIG_HOME"/fastfetch/config.jsonc"
-alias neoconf=""$EDITOR" "$XDG_CONFIG_HOME"/neofetch/config.conf"
+alias nvimconf=""$EDITOR" "$XDG_CONFIG_HOME"/nvim/"
 alias aliasconf=""$EDITOR" "$XDG_CONFIG_HOME"/zsh/aliases.zsh"
-#alias greetconf="sudo "$EDITOR" /etc/lightdm/lightdm.conf"
-alias hyprconf=""$VEDITOR" "$HOME"/.config/hypr"
-alias barconf=""$VEDITOR" "$HOME"/.config/waybar"
+alias hyprconf=""$EDITOR" "$HOME"/.config/hypr"
+alias barconf=""$EDITOR" "$HOME"/.config/waybar"
 
 # Update zsh configuration
 alias zshrc="source ~/.zshrc"
@@ -51,12 +47,11 @@ alias neo="neofetch"
 alias htop="btop"
 alias gparted="sudo -E gparted"
 alias :q="exit"
+alias ZZ="exit"
 alias cppath="pwd | wl-copy"
 
 
-# Show NEOFETCH when clearing terminal
-
-# Colorize grep output (chachi for log files)
+# Colorize grep output (cool for log files)
 alias grep="grep --color=auto"
 
 # cp, mv, rm with verbose and more sure
@@ -94,6 +89,7 @@ installyay(){ yay -S "$@" }
 open() { evince "$@" > /dev/null 2>&1 & disown; }
 # geeqie with 'view'
 view() { geeqie "$@" > /dev/null 2>&1 & disown; }
+alias viewpic="kitten icat"
 # Libreoffice with 'loff'
 loff() { libreoffice "$@" > /dev/null 2>&1 & disown; }
 
