@@ -1,0 +1,15 @@
+autofirma
+configuradorfnmt
+libelectron
+light
+oh-my-posh
+pinta
+python-imageio-ffmpeg
+python-jupytext
+python-pywalfox
+python-screeninfo
+visual-studio-code-bin
+waypaper
+wlogout
+wpgtk
+xwaylandvideobridge
