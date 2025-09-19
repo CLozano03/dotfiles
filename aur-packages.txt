@@ -6,6 +6,7 @@ oh-my-posh
 pinta
 python-imageio-ffmpeg
 python-jupytext
+python-debugpy
 python-pywalfox
 python-screeninfo
 visual-studio-code-bin
