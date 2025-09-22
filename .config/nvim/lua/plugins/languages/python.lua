@@ -157,67 +157,99 @@ return {
    },
 
    {
-      'linux-cultist/venv-selector.nvim',
-      dependencies = {
-         'nvim-tree/nvim-web-devicons',
-         'neovim/nvim-lspconfig',
-         'mfussenegger/nvim-dap',
-         'mfussenegger/nvim-dap-python',
-         'nvim-telescope/telescope.nvim',
-      },
+      'AckslD/swenv.nvim',
+      config = function()
+         require('swenv').setup {
+            -- Should return a list of tables with a `name` and a `path` entry each.
+            -- Gets the argument `venvs_path` set below.
+            -- By default just lists the entries in `venvs_path`.
+            get_venvs = function(venvs_path)
+               return require('swenv.api').get_venvs(venvs_path)
+            end,
+            venvs_path = vim.fn.expand '~/venvs',
+
+            post_set_venv = function()
+               local client = vim.lsp.get_clients({ name = 'basedpyright' })[1]
+               if not client then
+                  return
+               end
+               local venv = require('swenv.api').get_current_venv()
+               if not venv then
+                  return
+               end
+               local venv_python = venv.path .. '/bin/python'
+               if client.settings then
+                  client.settings = vim.tbl_deep_extend('force', client.settings, { python = { pythonPath = venv_python } })
+               else
+                  client.config.settings = vim.tbl_deep_extend('force', client.config.settings, { python = { pythonPath = venv_python } })
+               end
+               client.notify('workspace/didChangeConfiguration', { settings = nil })
+            end,
+         }
+      end,
       keys = {
-         { ',v', '<cmd>VenvSelect<cr>', desc = 'Seleccionar venv' },
-      },
-      opts = {
-         name = 'venv',
-         auto_refresh = true,
+         {
+            ',v',
+            function()
+               require('swenv.api').pick_venv()
+            end,
+            desc = 'Select venv',
+         },
+         {
+            ',c',
+            function()
+               local venv = require('swenv.api').get_current_venv()
+               if venv then
+                  vim.notify('Current venv --> "' .. venv.name .. '". Path: ' .. venv.path, vim.log.levels.INFO, { title = 'swenv' })
+               else
+                  vim.notify('No active venv', vim.log.levels.WARN, { title = 'swenv' })
+               end
+            end,
+            desc = 'Show current venv',
+         },
       },
    },
-
    {
       'Vigemus/iron.nvim',
       ft = 'python',
       event = 'VeryLazy',
+      keys = {
+         { '<leader>ii', vim.cmd.IronRepl, desc = 'Toggle REPL' },
+         { '<leader>iI', vim.cmd.IronRestart, desc = 'Restart REPL' },
+      },
       config = function()
          local iron = require 'iron.core'
-         local python_cmd = (vim.fn.executable 'ipython' == 1) and { 'ipython' } or { 'python3' }
+
+         local has_ipy = vim.fn.executable 'ipython' == 1
+         local python_cmd = has_ipy and { 'ipython', '--no-autoindent' } or { 'python3', '-i' }
+         local python_format = has_ipy and require('iron.fts.common').bracketed_paste_python or nil
 
          iron.setup {
             config = {
-               scratch_repl = true,
+               scratch_repl = false,
                repl_definition = {
                   sh = {
                      command = { 'zsh' },
                   },
                   python = {
                      command = python_cmd,
-                     format = require('iron.fts.common').bracketed_paste_python,
+                     format = python_format,
                   },
                },
                repl_open_cmd = 'vertical botright 65 split',
             },
             keymaps = {
-               send_motion = '<space>xc',
-               visual_send = '<space>xv',
-               send_file = '<space>xf',
-               send_line = '<space>xl',
-               send_paragraph = '<space>xp',
-               send_until_cursor = '<space>xu',
-               cr = '<space>x<cr>',
-               interrupt = '<space>x<space>',
-               exit = '<space>xq',
+               send_motion = '+',
+               visual_send = '+',
+               send_file = '<leader>if',
+               send_line = '++',
+               send_until_cursor = '<leader>su',
+               cr = '<leader>s<cr>',
+               interrupt = '<leader>i<leader>',
+               exit = '<leader>iq',
+               clear = '<leader>il',
             },
-            highlight = {
-               italic = true,
-            },
-            ignore_blank_lines = true,
          }
-
-         -- Basics Iron keymaps
-         vim.keymap.set('n', '<space>rs', '<cmd>IronRepl<cr>')
-         vim.keymap.set('n', '<space>rr', '<cmd>IronRestart<cr>')
-         vim.keymap.set('n', '<space>rf', '<cmd>IronFocus<cr>')
-         vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
 
          -- Execute cell and move to next cell
          local function execute_cell_and_next()
@@ -239,10 +271,10 @@ return {
          end
 
          -- Map funcion for executing cell and moving to next
-         vim.keymap.set('n', '<space>xn', execute_cell_and_next, { noremap = true, silent = true, desc = 'Execute cell and go to next' })
+         vim.keymap.set('n', '<leader>in', execute_cell_and_next, { noremap = true, silent = true, desc = 'Execute cell and go to next' })
 
          -- Execute current cell without moving
-         vim.keymap.set('n', '<space>xx', function()
+         vim.keymap.set('n', '<space>ix', function()
             local start_line = vim.fn.search('^# %%', 'bnW')
             if start_line == 0 then
                start_line = 1
@@ -261,8 +293,8 @@ return {
       config = function()
          require('jupytext').setup {
             style = 'hydrogen',
-            output_extension = 'auto',
-            force_ft = nil,
+            output_extension = 'py',
+            force_ft = 'python',
             update_nb_on_save = true,
          }
       end,
