@@ -93,9 +93,9 @@ return {
          local opts = { noremap = true, silent = true }
 
          -- Toggle breakpoint
-         vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, vim.tbl_extend('force', opts, { desc = 'Toggle breakpoint' }))
+         vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, vim.tbl_extend('force', opts, { desc = 'Toggle breakpoint' }))
          vim.keymap.set('n', '<leader>dc', dap.continue, vim.tbl_extend('force', opts, { desc = 'Continue/Start' }))
-         vim.keymap.set('n', '<leader>do', dap.step_over, vim.tbl_extend('force', opts, { desc = 'Step over' }))
+         -- vim.keymap.set('n', '<C-l>', dap.step_over, vim.tbl_extend('force', opts, { desc = 'Step over' }))
          vim.keymap.set('n', '<leader>di', dap.step_into, vim.tbl_extend('force', opts, { desc = 'Step into' }))
          vim.keymap.set('n', '<leader>dO', dap.step_out, vim.tbl_extend('force', opts, { desc = 'Step out' }))
          vim.keymap.set('n', '<leader>dq', function()
@@ -103,6 +103,13 @@ return {
             dap.disconnect()
          end, vim.tbl_extend('force', opts, { desc = 'Terminate' }))
          vim.keymap.set('n', '<leader>du', dapui.toggle, vim.tbl_extend('force', opts, { desc = 'Toggle UI' }))
+         vim.keymap.set('n', '<leader>dr', function()
+            if dap.session() then
+               dap.restart()
+            else
+               dap.run_last()
+            end
+         end, vim.tbl_extend('force', opts, { desc = 'Restart session' }))
       end,
    },
    --

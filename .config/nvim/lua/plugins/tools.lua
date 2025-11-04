@@ -67,9 +67,8 @@ return {
          use_default_keymaps = true,
          view = 'float',
          keymaps = {
-            ['q'] = function()
-               vim.cmd 'quit'
-            end,
+            ['q'] = 'actions.close',
+            ['<Esc>'] = 'actions.close',
          },
       },
       keys = {

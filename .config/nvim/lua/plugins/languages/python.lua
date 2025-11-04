@@ -9,6 +9,11 @@ return {
          'rcarriga/nvim-dap-ui',
          'nvim-neotest/nvim-nio',
       },
+      opts = {
+         rocks = {
+            hererocks = false, -- usa Lua del sistema
+         },
+      },
       config = function(_, _)
          local path = '~/.local/share/nvim/mason/packages/debugpy/venv/bin/python'
          require('dap-python').setup(path)
@@ -164,7 +169,17 @@ return {
             -- Gets the argument `venvs_path` set below.
             -- By default just lists the entries in `venvs_path`.
             get_venvs = function(venvs_path)
-               return require('swenv.api').get_venvs(venvs_path)
+               local venvs = require('swenv.api').get_venvs(venvs_path)
+               if not venvs then
+                  return {}
+               end
+               local filtered = {}
+               for _, v in pairs(venvs) do
+                  if v.name and v.path then
+                     table.insert(filtered, v)
+                  end
+               end
+               return filtered
             end,
             venvs_path = vim.fn.expand '~/venvs',
 
@@ -226,7 +241,7 @@ return {
 
          iron.setup {
             config = {
-               scratch_repl = false,
+               scratch_repl = true,
                repl_definition = {
                   sh = {
                      command = { 'zsh' },

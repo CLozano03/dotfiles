@@ -33,6 +33,7 @@ require('lazy').setup {
    change_detection = { notify = true },
    concurrency = 2,
    ui = {
+      border = 'rounded',
       icons = {
          cmd = '⌘',
          config = '',

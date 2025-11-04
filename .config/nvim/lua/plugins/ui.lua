@@ -29,10 +29,10 @@ return {
       event = 'VeryLazy',
       opts = {
          spec = {
-            { '<leader>b', group = 'De[B]ug' },
             { '<leader>c', group = '[C]ode' },
-            { '<leader>d', group = '[D]ocument' },
+            { '<leader>d', group = '[D]ebug' },
             { '<leader>h', group = 'Git [H]unk' },
+            { '<leader>i', group = '[I]ron Repl' },
             { '<leader>r', group = '[R]ename' },
             { '<leader>s', group = '[S]earch' },
             { '<leader>t', group = '[T]est' },

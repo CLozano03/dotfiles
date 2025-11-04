@@ -18,8 +18,7 @@ return {
          { -- If encountering errors, see telescope-fzf-native README for installation instructions
             'nvim-telescope/telescope-fzf-native.nvim',
 
-            -- `build` is used to run some command when the plugin is installed/updated.
-            -- This is only run then, not every time Neovim starts up.
+            -- `build` is used to run some command only when the plugin is installed/updated.
             build = 'make',
 
             -- `cond` is a condition used to determine whether this plugin should be
@@ -29,8 +28,6 @@ return {
             end,
          },
          { 'nvim-telescope/telescope-ui-select.nvim' },
-
-         -- Useful for getting pretty icons, but requires a Nerd Font.
          { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
       },
       config = function()
@@ -60,6 +57,16 @@ return {
             --  All the info you're looking for is in `:help telescope.setup()`
             --
             defaults = {
+               vimgrep_arguments = {
+                  'rg',
+                  '--color=never',
+                  '--no-heading',
+                  '--with-filename',
+                  '--line-number',
+                  '--column',
+                  '--smart-case',
+                  '--hidden', -- <- aquí
+               },
                file_ignore_patterns = {
                   'venv/',
                   'node_modules/',
@@ -81,7 +88,13 @@ return {
                   filetypes = { 'png', 'jpg', 'jpeg', 'webp', 'pdf' },
                   find_cmd = 'rg', -- o "fd"
                   -- usa viu o chafa
-                  -- previewer = "viu", -- opcional, si no funciona bien el que viene por defecto
+                  -- previewer = "viu",
+               },
+            },
+            pickers = {
+               find_files = {
+                  hidden = true,
+                  no_ignore = false,
                },
             },
          }
@@ -106,7 +119,9 @@ return {
          {
             '<leader>sg',
             function()
-               telescope_builtin.live_grep { cwd = telescope_cwd() }
+               telescope_builtin.live_grep {
+                  cwd = telescope_cwd(),
+               }
             end,
             desc = ' [S]earch by [G]rep',
             mode = 'n',
