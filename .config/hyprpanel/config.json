@@ -44,11 +44,11 @@
   "theme.osd.margins": "7px 7px 7px 5px",
   "theme.osd.radius": "24px",
   "theme.osd.muted_zero": false,
-  "menus.clock.time.military": false,
+  "menus.clock.time.military": true,
   "menus.clock.time.hideSeconds": false,
   "menus.clock.weather.unit": "metric",
   "bar.clock.format": "%H:%M",
-  "bar.media.show_active_only": false,
+  "bar.media.show_active_only": true,
   "theme.bar.menus.menu.dashboard.profile.radius": "24px",
   "menus.dashboard.controls.enabled": false,
   "menus.dashboard.stats.enable_gpu": false,
@@ -63,7 +63,8 @@
         "media"
       ],
       "middle": [
-        "clock"
+        "clock",
+        "hypridle"
       ],
       "right": [
         "network",
@@ -117,5 +118,21 @@
   "theme.bar.margin_sides": "10px",
   "bar.clock.icon": "",
   "bar.network.truncation": false,
-  "theme.font.weight": 900
+  "theme.font.weight": 900,
+  "bar.customModules.hypridle.onLabel": "",
+  "bar.customModules.hypridle.offLabel": "",
+  "bar.customModules.hypridle.label": true,
+  "bar.customModules.hypridle.offIcon": "󰨙",
+  "bar.customModules.hypridle.onIcon": "󰔡",
+  "theme.bar.buttons.modules.hypridle.spacing": "0.45em",
+  "menus.clock.weather.enabled": false,
+  "menus.media.displayTimeTooltip": true,
+  "menus.media.displayTime": false,
+  "menus.media.hideAlbum": false,
+  "menus.media.hideAuthor": false,
+  "bar.media.format": "{artist: - }{title}",
+  "theme.bar.buttons.media.enableBorder": false,
+  "bar.notifications.show_total": false,
+  "bar.media.show_label": true,
+  "bar.media.truncation_size": 30
 }
