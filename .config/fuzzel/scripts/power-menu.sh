@@ -2,8 +2,6 @@
 
 SELECTION="$(printf "󰐥 Shutdown\n󰌾 Lock\n󰤄 Suspend\n󰍃 Log out\n Reboot\n Reboot to UEFI" | fuzzel --dmenu)"
 
-}
-
 case $SELECTION in
 *"󰌾 Lock"*)
     hyprlock -q

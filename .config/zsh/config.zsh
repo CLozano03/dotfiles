@@ -92,7 +92,7 @@ function zle-keymap-select {
         vicmd) echo -ne '\e[1 q' ;;  # Block (█) in normal mode
         viins|main) echo -ne '\e[5 q' ;;  # Bar (|) in insert mode
     esac
-    zle reset-prompt
+    zle .redisplay
 }
 
 # Executed when new zsh line 

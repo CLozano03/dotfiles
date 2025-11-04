@@ -31,6 +31,12 @@ zinit snippet OMZP::command-not-found
 
 autoload -Uz compinit && compinit -d ~/.zcompdump
 
+# Bracketed paste support
+autoload -Uz bracketed-paste-magic
+zle -N bracketed-paste bracketed-paste-magic
+typeset -gA zle_bracketed_paste
+zle_highlight=(paste:none)
+
 # To make use of `cd -<TAB>` to navigate to recently visited directories
 zinit cdreplay -q
 
