@@ -63,14 +63,12 @@
         "media"
       ],
       "middle": [
-        "clock",
-        "hypridle"
+        "clock"
       ],
       "right": [
         "network",
         "bluetooth",
-        "battery",
-        "notifications"
+        "battery"
       ]
     }
   },
@@ -95,7 +93,7 @@
   "theme.bar.menus.menu.dashboard.confirmation_scaling": 80,
   "theme.bar.menus.menu.media.scaling": 80,
   "theme.bar.menus.menu.volume.scaling": 80,
-  "theme.bar.menus.menu.network.scaling": 80,
+  "theme.bar.menus.menu.network.scaling": 90,
   "theme.bar.menus.menu.bluetooth.scaling": 80,
   "theme.tooltip.scaling": 80,
   "theme.bar.menus.popover.scaling": 80,
@@ -122,8 +120,8 @@
   "bar.customModules.hypridle.onLabel": "",
   "bar.customModules.hypridle.offLabel": "",
   "bar.customModules.hypridle.label": true,
-  "bar.customModules.hypridle.offIcon": "󰨙",
-  "bar.customModules.hypridle.onIcon": "󰔡",
+  "bar.customModules.hypridle.offIcon": "󰒲",
+  "bar.customModules.hypridle.onIcon": "󰒳",
   "theme.bar.buttons.modules.hypridle.spacing": "0.45em",
   "menus.clock.weather.enabled": false,
   "menus.media.displayTimeTooltip": true,
@@ -134,5 +132,17 @@
   "theme.bar.buttons.media.enableBorder": false,
   "bar.notifications.show_total": false,
   "bar.media.show_label": true,
-  "bar.media.truncation_size": 30
+  "bar.media.truncation_size": 30,
+  "bar.network.rightClick": "nm-connection-editor",
+  "theme.bar.buttons.clock.enableBorder": true,
+  "theme.bar.buttons.clock.spacing": "0em",
+  "theme.bar.buttons.monochrome": false,
+  "theme.bar.menus.menu.notifications.height": "50em",
+  "theme.bar.buttons.workspaces.hover": "#f5c2e7",
+  "theme.bar.menus.popover.radius": "0.3em",
+  "theme.bar.menus.popover.background": "#181824",
+  "theme.bar.menus.iconbuttons.active": "#b4beff",
+  "theme.bar.menus.tooltip.radius": "0.4em",
+  "theme.bar.menus.tooltip.background": "#11111b",
+  "theme.bar.menus.slider.backgroundhover": "#c01c28"
 }
