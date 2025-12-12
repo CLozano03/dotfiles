@@ -36,10 +36,10 @@
   "theme.notification.opacity": 100,
   "theme.bar.outer_spacing": "5px",
   "theme.bar.buttons.radius": "24px",
-  "theme.notification.border_radius": "24px",
+  "theme.notification.border_radius": "20px",
   "notifications.autoDismiss": false,
   "notifications.position": "top right",
-  "theme.notification.enableShadow": false,
+  "theme.notification.enableShadow": true,
   "notifications.showActionsOnHover": true,
   "theme.osd.margins": "7px 7px 7px 5px",
   "theme.osd.radius": "24px",
@@ -68,7 +68,8 @@
       "right": [
         "network",
         "bluetooth",
-        "battery"
+        "battery",
+        "notifications"
       ]
     },
     "HDMI-A-1": {}
@@ -153,5 +154,7 @@
   "theme.bar.menus.menu.clock.card.color": "#181824",
   "theme.bar.background": "#000000",
   "theme.bar.buttons.background": "#242438",
-  "theme.bar.buttons.background_hover_opacity": 75
+  "theme.bar.buttons.background_hover_opacity": 75,
+  "theme.bar.menus.menu.notifications.pager.show": false,
+  "notifications.timeout": 9000
 }
