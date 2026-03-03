@@ -9,14 +9,11 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
+# export XDG_DATA_DIRS=$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:/home/$USER/.local/share/flatpak/exports/share
 # Java version can be changed between 8, 11 and 22
-export JAVA_VERSION=11
-export JAVA_HOME=/usr/lib/jvm/java-"$JAVA_VERSION"-openjdk
-#export PATH=$JAVA_HOME/bin:$PATH
-
-export ROCKU=/usr/share/wordlists/rockyou.txt
+# export JAVA_VERSION=22
+# export JAVA_HOME=/usr/lib/jvm/java-"$JAVA_VERSION"-openjdk
+# export PATH=$JAVA_HOME/bin:$PATH
 
 export CACHE_DIR=$HOME/.cache/
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="/opt/miniconda3/bin:$PATH"
-export CONDA_DLL_SEARCH_MODIFICATION_ENABLE=1

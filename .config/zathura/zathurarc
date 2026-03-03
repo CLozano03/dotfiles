@@ -1,0 +1,16 @@
+set recolor "true"
+set recolor-lightcolor "#f1f1e1" # Fondo color crema/hueso (menos agresivo que el blanco)
+set recolor-darkcolor  "#2d2d2d" # Texto gris muy oscuro (menos contraste que el negro puro)
+
+# Opcional: Modo nocturno suave
+set completion-bg "#282828"
+set completion-fg "#ebdbb2"
+set statusbar-bg "#282828"
+set statusbar-fg "#ebdbb2"
+
+# Renderizado suave
+set render-all "true"
+set guioptions ""
+
+set synctex true
+set synctex-editor-command "nvr --remote-silent +%{line} %{input}"
