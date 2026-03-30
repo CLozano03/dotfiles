@@ -1,3 +1,5 @@
+vim.deprecate = function() end
+
 local opt = vim.opt
 
 -- Set the leader key
