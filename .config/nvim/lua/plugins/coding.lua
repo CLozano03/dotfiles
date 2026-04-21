@@ -114,6 +114,7 @@ return {
       'nvim-treesitter/nvim-treesitter',
       tag = "v0.10.0",
       lazy=false,
+      disable = { 'latex' }, -- Disabled because it is handled by vimtex
       build = ':TSUpdate',
       main = 'nvim-treesitter.configs', -- Sets main module to use for opts
       -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
