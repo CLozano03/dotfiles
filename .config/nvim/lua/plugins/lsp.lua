@@ -52,7 +52,7 @@ return {
          'hrsh7th/cmp-nvim-lsp',
       },
       config = function()
-         -- Configuración para Java si el plugin existe
+         -- Java config if the plugin is installed
          local plugin_name = 'java'
          local java_plugin_exists = require('lazy.core.config').plugins[plugin_name] ~= nil
          if java_plugin_exists then
@@ -89,7 +89,7 @@ return {
 
                -- Resaltar referencias del símbolo bajo el cursor
                local client = vim.lsp.get_client_by_id(event.data.client_id)
-               if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+               if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
                   local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
                   vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
                      buffer = event.buf,
@@ -111,7 +111,7 @@ return {
                end
 
                -- Activar/desactivar inlay hints
-               if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+               if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
                   map('<leader>th', function()
                      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
                   end, '[T]oggle Inlay [H]ints')
@@ -184,9 +184,7 @@ return {
                   -- Fusionar capabilities globales con las específicas del servidor
                   server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
 
-                  -- ✨ EL CAMBIO CLAVE ESTÁ AQUÍ ✨
-                  -- Usar la nueva API vim.lsp.config en lugar de require('lspconfig')
-                  vim.lsp.config[server_name].setup(server)
+                  require('lspconfig')[server_name].setup(server)
                end,
             },
          }

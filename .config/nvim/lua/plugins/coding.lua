@@ -83,6 +83,7 @@ return {
       dependencies = {
          'nvim-lua/plenary.nvim',
          'nvim-treesitter/nvim-treesitter',
+         'lewis6991/async.nvim',
       },
       config = function()
          require('refactoring').setup()
@@ -112,12 +113,9 @@ return {
    },
    { -- Highlight, edit, and navigate code
       'nvim-treesitter/nvim-treesitter',
-      tag = "v0.10.0",
       lazy=false,
-      disable = { 'latex' }, -- Disabled because it is handled by vimtex
       build = ':TSUpdate',
-      main = 'nvim-treesitter.configs', -- Sets main module to use for opts
-      -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
+
       opts = {
          ensure_installed = {
             'bash',
