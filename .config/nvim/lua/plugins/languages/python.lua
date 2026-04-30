@@ -303,17 +303,17 @@ return {
          end, { noremap = true, silent = true, desc = 'Execute current cell' })
       end,
    },
-   {
-      'GCBallesteros/jupytext.nvim',
-      config = function()
-         require('jupytext').setup {
-            style = 'hydrogen',
-            output_extension = 'py',
-            force_ft = 'python',
-            update_nb_on_save = true,
-         }
-      end,
-   },
+   -- {
+   --    'GCBallesteros/jupytext.nvim',
+   --    config = function()
+   --       require('jupytext').setup {
+   --          style = 'hydrogen',
+   --          output_extension = 'py',
+   --          force_ft = 'python',
+   --          update_nb_on_save = true,
+   --       }
+   --    end,
+   -- },
    {
       'preservim/vim-markdown',
       ft = 'markdown',

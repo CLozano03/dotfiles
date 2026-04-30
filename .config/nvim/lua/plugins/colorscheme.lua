@@ -15,8 +15,8 @@ return {
 
    {
       'folke/tokyonight.nvim',
-      enable = true, -- disable by default
-      lazy = true, -- don't load unless called
+      enable = true,
+      lazy = false, -- don't load unless called
       init = function()
          vim.cmd.colorscheme 'tokyonight-night'
       end,

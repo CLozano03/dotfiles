@@ -1,5 +1,4 @@
 return {
-   -- { 'bilal2453/luvit-meta', lazy = true }, -- Comentado como en el original
    {
       'williamboman/mason.nvim',
       dependencies = {
@@ -27,6 +26,7 @@ return {
                'bashls',
                'clangd',
             },
+            automatic_installation = True,
          }
 
          require('mason-tool-installer').setup {

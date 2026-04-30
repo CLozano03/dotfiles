@@ -1,5 +1,4 @@
 return {
-
    -- {
    --    -- To use ChatGPT in Neovim, you need to set up an API key from OpenAI.
    --    -- Follow these steps to get your API key:
@@ -29,14 +28,15 @@ return {
    -- },
    {
       'CopilotC-Nvim/CopilotChat.nvim',
+      disabled = true,
       keys = {
-         { '<leader>aa', false },
-         { '<leader>ax', false },
-         { '<leader>aq', false },
-         { '<leader>ap', false },
-         { '<leader>ac', '', desc = '+copilotchat', mode = { 'n', 'v' } },
+         { '<leader>caa', false },
+         { '<leader>cax', false },
+         { '<leader>caq', false },
+         { '<leader>cap', false },
+         { '<leader>cac', '', desc = '+copilotchat', mode = { 'n', 'v' } },
          {
-            '<leader>aca',
+            '<leader>cca',
             function()
                return require('CopilotChat').toggle()
             end,
@@ -44,7 +44,7 @@ return {
             mode = { 'n', 'v' },
          },
          {
-            '<leader>acx',
+            '<leader>ccx',
             function()
                return require('CopilotChat').reset()
             end,
@@ -52,7 +52,7 @@ return {
             mode = { 'n', 'v' },
          },
          {
-            '<leader>acq',
+            '<leader>ccq',
             function()
                local input = vim.fn.input 'Quick Chat: '
                if input ~= '' then
@@ -63,7 +63,7 @@ return {
             mode = { 'n', 'v' },
          },
          {
-            '<leader>acp',
+            '<leader>ccp',
             function()
                require('CopilotChat').select_prompt()
             end,

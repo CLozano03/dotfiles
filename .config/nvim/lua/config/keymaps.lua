@@ -24,3 +24,5 @@ set_keymap('n', '<C-u>', '<Cmd>normal! <C-u>zz<CR>', { noremap = true, silent = 
 -- System clipboard
 set_keymap({ 'n', 'v' }, '<leader>y', '"+y', { desc = 'Yank to system clipboard' })
 set_keymap({ 'n', 'v' }, '<leader>p', '"+p', { desc = 'Paste from system clipboard' })
+
+set_keymap('n', '<C-f>', '<cmd>silent !tmux neww tmux-sessionizer<CR>')
