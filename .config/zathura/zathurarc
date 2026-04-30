@@ -14,3 +14,6 @@ set guioptions ""
 
 set synctex true
 set synctex-editor-command "nvr --remote-silent +%{line} %{input}"
+
+set selection-clipboard clipboard
+
