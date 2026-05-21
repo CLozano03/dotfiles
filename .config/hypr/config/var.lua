@@ -1,0 +1,16 @@
+global mainMod = "SUPER"
+
+global terminal = "kitty"
+global fileManager = "dolphin"
+global browser = "zen"
+global browser_cmd = "zen-browser"
+global wRTerminal = "kitty"
+global menu = "rofi -show drun"
+global nextwal = "waypaper --random"
+global power_menu = "/bin/sh ~/.config/fuzzel/scripts/power-menu.sh"
+global bluetooth = "~/.local/bin/bzmenu -l fuzzel"
+global network = "~/.local/bin/networkmanager_dmenu"
+
+global screenshot_zone = "hyprshot -m region --freeze"
+global screenshot_window = "hyprshot -m window --freeze"
+global screenshot_screen = "hyprshot -m output --freeze"

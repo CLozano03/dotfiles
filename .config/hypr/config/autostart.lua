@@ -1,0 +1,7 @@
+hl.on("hyprland.start", function()
+	hl.exec_cmd("waypaper --restore")
+	hl.exec_cmd("hyprsunset --temperature 4000 &")
+	hl.exec_cmd("udiskie -Tn &")
+	hl.exec_cmd("reload")
+	hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
+end)
