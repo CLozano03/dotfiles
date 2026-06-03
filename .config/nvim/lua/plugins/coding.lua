@@ -1,7 +1,11 @@
 return {
+   {'saghen/blink.lib'},
    {
       'saghen/blink.cmp',
-      -- dependencies = 'rafamadriz/friendly-snippets',
+   dependencies = {
+    "saghen/blink.lib",
+  },
+
       version = 'v0.*',
 
       opts = {
@@ -111,13 +115,12 @@ return {
       },
       ft = { 'html', 'css', 'javascript', 'typescript' },
    },
-   {
-      'nvim-treesitter/nvim-treesitter',
-      branch = 'main',
-      init = function()
-         vim.g.loaded_nvim_treesitter = 1
-      end,
-   },
+   { 'nvim-treesitter/nvim-treesitter',
+    branch = 'main',
+    init = function()
+      vim.g.loaded_nvim_treesitter = 1
+    end,
+  },
 
    {
       'lewis6991/ts-install.nvim',
