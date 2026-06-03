@@ -16,4 +16,4 @@ export LC_ALL=en_US.UTF-8
 # export PATH=$JAVA_HOME/bin:$PATH
 
 export CACHE_DIR=$HOME/.cache/
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/cargo/.bin:$PATH"
