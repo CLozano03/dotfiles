@@ -1,10 +1,18 @@
 return {
-   {'saghen/blink.lib'},
+   { 'saghen/blink.lib' },
    {
       'saghen/blink.cmp',
-   dependencies = {
-    "saghen/blink.lib",
-  },
+      dependencies = {
+         'saghen/blink.lib',
+      },
+
+      enabled = function()
+         local path = vim.api.nvim_buf_get_name(0)
+         if string.find(path, 'oil://', 1, true) == 1 then
+            return false
+         end
+         return true
+      end,
 
       version = 'v0.*',
 
@@ -115,12 +123,13 @@ return {
       },
       ft = { 'html', 'css', 'javascript', 'typescript' },
    },
-   { 'nvim-treesitter/nvim-treesitter',
-    branch = 'main',
-    init = function()
-      vim.g.loaded_nvim_treesitter = 1
-    end,
-  },
+   {
+      'nvim-treesitter/nvim-treesitter',
+      branch = 'main',
+      init = function()
+         vim.g.loaded_nvim_treesitter = 1
+      end,
+   },
 
    {
       'lewis6991/ts-install.nvim',
@@ -132,6 +141,7 @@ return {
                'c',
                'bash',
                'python',
+               'cpp',
                -- etc
             },
          }
