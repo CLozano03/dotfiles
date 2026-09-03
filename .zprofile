@@ -1,6 +1,7 @@
 # ~/.zprofile
 
 # Init Hyprland without greeter
-if [ "$(tty)" = "/dev/tty1" ] && [ -z "$WAYLAND_DISPLAY" ] && [ -z "$DISPLAY" ]; then
+if [ -z "$WAYLAND_DISPLAY" ] && [ -z "$DISPLAY" ]; then
   exec start-hyprland
+  # exec startx lxqt-session
 fi

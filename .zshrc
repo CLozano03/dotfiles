@@ -50,4 +50,3 @@ unalias zi 2>/dev/null
 eval "$(zoxide init zsh)"                                            # zoxide for better cd navigation
 eval "$(fzf --zsh)"                                                  # fuzzyfinder
 eval "$(oh-my-posh init zsh --config $ZSH_CONFIG/ohmyposh/zen.toml)" # Prompt
-

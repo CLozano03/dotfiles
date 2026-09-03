@@ -17,3 +17,5 @@ export LC_ALL=en_US.UTF-8
 
 export CACHE_DIR=$HOME/.cache/
 export PATH="$HOME/.local/bin:$HOME/cargo/.bin:$PATH"
+
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
