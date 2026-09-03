@@ -46,7 +46,12 @@ bindkey '^[L' clear-screen
 autoload -z edit-command-line && zle -N edit-command-line && bindkey '^e' edit-command-line
 
 bindkey '^O' autosuggest-accept
-bindkey '^H' backward-delete-word # ctrl+backspace
+bindkey -s ^f "tmux-sessionizer\n"
+bindkey -s '\eh' "tmux-sessionizer -s 0\n"
+bindkey -s '\et' "tmux-sessionizer -s 1\n"
+bindkey -s '\en' "tmux-sessionizer -s 2\n"
+bindkey -s '\es' "tmux-sessionizer -s 3\n"
+
 
 bindkey "^[[1;5D" backward-word
 bindkey "^[[1;5C" forward-word
