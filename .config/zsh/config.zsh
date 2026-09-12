@@ -140,7 +140,7 @@ Below is a diff of all staged changes, coming from the command:
 git diff --cached
 \`\`\`
 
-Please generate a concise, one-line commit message for these changes."
+Please generate a concise, one-line commit message for these changes, following the Conventional Commits format: <type>: <description>, using one of these types: feat, fix, chore, refactor, docs, test, style, perf. Reply with only the commit message, no explanation."
     }
 
     # Function to read user input compatibly with both Bash and Zsh
