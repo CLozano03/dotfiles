@@ -12,7 +12,6 @@ export PATH="${PATH}:${HOME}/.local/bin"
 export CACHE_DIR="${HOME}/.cache"
 
 export VI_MODE=1 # 1 if using vim mode. Loaded in config.zsh
-source "${ZSH_CONFIG}/config.zsh"
 
 # Installing (if not) and loading Zinit, a plugin manager for zsh
 # Dir to store zinit configuration
@@ -45,6 +44,7 @@ if [ -f "${ZSH_CONFIG}/private_aliases.zsh" ]; then
   source "${ZSH_CONFIG}/private_aliases.zsh" # Private aliasees
 fi
 source "${ZSH_CONFIG}/aliases.zsh" # General aliases
+source "${ZSH_CONFIG}/config.zsh"
 
 unalias zi 2>/dev/null
 eval "$(zoxide init zsh)"                                            # zoxide for better cd navigation
