@@ -1,0 +1,350 @@
+{
+    // Workspaces
+    "hyprland/workspaces": {
+    "format": "{name}",
+    "persistent-workspaces": {
+      "1": [],
+      "2": []
+    },
+    "on-click": "activate"
+  },
+
+
+  "custom/music": {
+    "format": "  {}",
+    "escape": true,
+    "interval": 5,
+    "tooltip": true,
+    "tooltip-format": "<b>{artist} - {title}</b>",
+    "exec": "playerctl metadata --format='{{ artist }} - {{ title }}'",
+    "on-click": "playerctl play-pause",
+    "max-length": 20
+  },
+
+  "mpris": {
+
+      "format": "{player_icon} {artist} - {title}",
+      "format-paused": "{status_icon} {artist} - {title}",
+      "player-icons": {
+        "default": "▶",
+        "mpv": "🎵",
+        "spotify": " ",
+        "youtube": " ",
+        "firefox": "󰈹 "
+      },
+      "status-icons": {
+        "paused": "⏸"
+      },
+      "ignored-players": ["firefox"],
+      "max-length": 40
+  },
+
+    // Group Settings
+    "group/settings": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 300,
+            "children-class": "not-memory",
+            "transition-left-to-right": true
+        },            
+        "modules": [
+            "custom/settings",
+            "custom/waybarthemes",
+            "custom/wallpaper",
+            "custom/ml4w-hyprland-settings"
+        ]
+    },
+
+
+    // Wallpaper
+    "custom/wallpaper": {
+        "format": "",
+        "on-click": "waypaper",
+        "on-click-right": "~/dotfiles/hypr/scripts/wallpaper-effects.sh",
+        "tooltip-format": "Left: Select a wallpaper\nRight: Select wallpaper effect"
+    },
+
+    // Taskbar
+    // "wlr/taskbar": {
+    //     "format": "{icon}",
+    //     "icon-size": 18,
+    //     "tooltip-format": "{title}",
+    //     "on-click": "activate",
+    //     "on-click-middle": "close",
+    //     "ignore-list": [
+    //        "Alacritty"
+    //     ],
+    //     "app_ids-mapping": {
+    //         "firefoxdeveloperedition": "firefox-developer-edition"
+    //     },
+    //     "rewrite": {
+    //         "Firefox Web Browser": "Firefox",
+    //         "Foot Server": "Terminal"
+    //     }
+    // },
+
+
+    // Hyprland Window
+    "hyprland/window": {
+        "rewrite": {
+            "(.*) - Brave": "$1",
+            "(.*) - Chromium": "$1",
+            "(.*) - Brave Search": "$1",
+            "(.*) - Outlook": "$1",
+        },
+        "separate-outputs": true
+    },
+    
+    // Empty
+    "custom/empty": {
+        "format": ""
+    },
+
+    // Empty
+    "custom/tools": {
+        "format": "",
+        "tooltip-format": "Tools"
+    },
+    
+    // Cliphist
+    // "custom/cliphist": {
+    //     "format": "",
+    //     "on-click": "sleep 0.1 && $XDG_CONFIG_HOME/hypr/scripts/cliphist.sh",
+    //     "on-click-right": "sleep 0.1 && $XDG_CONFIG_HOME/hypr/scripts/cliphist.sh d",
+    //     "on-click-middle": "sleep 0.1 && $XDG_CONFIG_HOME/hypr/scripts/cliphist.sh w",
+    //     "tooltip-format": "Clipboard Manager"
+    // },
+
+    // // Updates Count
+    // "custom/updates": {
+    //     "format": "   {}",
+    //     "escape": true,
+    //     "return-type": "json",       
+    //     "exec": "~/dotfiles/scripts/updates.sh",
+    //     "restart-interval": 60,
+    //     "on-click": "alacritty --class dotfiles-floating -e ~/dotfiles/scripts/installupdates.sh",
+    //     "on-click-right": "~/dotfiles/.settings/software.sh"
+    // },
+    
+
+    
+    
+    
+
+    // // Keybindings
+    // "custom/keybindings": {
+    //     "format": "",
+    //     "on-click": "~/dotfiles/hypr/scripts/keybindings.sh",
+    //     "tooltip": false
+    // },
+
+    // // ChatGPT Launcher
+    // "custom/chatgpt": {
+    //     "format": " ",
+    //     "on-click": "~/dotfiles/.settings/ai.sh",
+    //     "tooltip-format": "AI Support"
+    // },
+
+
+    // Rofi Application Launcher
+    "custom/appmenu": {
+        // START APPS LABEL
+        "format": "Apps",
+        // END APPS LABEL
+        "on-click": "sleep 0.2;rofi -show drun -replace",
+        "on-click-right": "~/dotfiles/hypr/scripts/keybindings.sh",
+        "tooltip-format": "Left: Open the application launcher\nRight: Show all keybindings"
+    },
+
+    // Rofi Application Launcher
+    "custom/appmenuicon": {
+        "format": "",
+        "on-click": "rofi -show drun -replace",
+        "on-click-right": "~/dotfiles/hypr/scripts/keybindings.sh",
+        "tooltip-format": "Left: Open the application launcher\nRight: Show all keybindings"
+    },    
+
+    
+
+    // // Hyprshade
+    // "custom/hyprshade": {
+    //     "format": "",
+    //     "tooltip-format": "Toggle Screen Shader",
+    //     "on-click": "sleep 0.5; ~/dotfiles/hypr/scripts/hyprshade.sh",
+    //     "on-click-right": "sleep 0.5; ~/dotfiles/hypr/scripts/hyprshade.sh rofi"
+    // },
+
+    // Hypridle inhibitor
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "󰔡",
+            "deactivated": "󰨙"
+        },
+        "tooltip": true,
+        "tooltip-format-activated": "Idle inhibitor: Activated",
+        "tooltip-format-deactivated": "Idle inhibitor: Deactivated"
+    },
+
+    // System
+    "custom/system": {
+        "format": "",
+        "tooltip": false
+    },
+    
+    // Group Tools
+    "group/tools": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 300,
+            "children-class": "not-memory",
+            "transition-left-to-right": false
+        },            
+        "modules": [
+            "custom/tools",
+            "custom/cliphist",
+            "custom/hypridle",
+            "custom/hyprshade"
+        ]
+    },
+
+    // Group Links
+    // "group/links": {
+    //     "orientation": "horizontal",
+    //     "modules": [
+    //         "custom/chatgpt",
+    //         "custom/empty"
+    //     ]
+    // },
+
+    // System tray
+    "tray": {
+        "spacing": 5
+    },
+
+    // Pulseaudio
+    "pulseaudio": {
+        "scroll-step": 2,
+        "format": "{icon}",
+        "format-muted": " ", // Icon: volume-mute
+        "format-icons": {
+        "default": [
+            " ", " "
+        ]
+    },
+    "on-click": "pavucontrol"
+},
+    
+"pulseaudio/slider": {
+    "min": 0,
+    "max": 100,
+    "orientation": "horizontal"
+
+},
+
+    // Bluetooth
+    "bluetooth": {
+        "format": "",
+        "interval": 30,
+        "on-click": "blueman-manager",
+        "format-no-controller": ""
+    },
+    
+    // Battery
+    "battery": {
+      "align": 0,
+      "rotate": 0,
+      "full-at": 100,
+      "interval": 10,
+      
+      "states": {
+        "warning": 20,
+        "critical": 10
+      },
+
+      "format-alt-click": "click",
+      "format-alt": "{icon} {time}",
+
+      // Connected to AC
+      "format-charging": "{icon}{capacity}%", // Icon: bolt
+      "format": "{icon} {capacity}%", // Icon: bolt
+      // Not connected to AC
+      "format-discharging": "{icon} {capacity}%",
+      "format-not-charging": "{icon} {capacity}%",
+      "format-full": "{icon} {capacity}%",
+
+      "format-icons": {
+        "discharging":[
+          "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"
+        ],
+        "charging": [
+          "󰢜 ", "󰂆 ", "󰂇 ", "󰂈 ", "󰢝 ", "󰂉 ","󰂉 ", "󰂊 ", "󰂋 ", "󰂅 "
+        ],
+        "not-charging": [
+          "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"
+        ],
+        "full": [ "󰁹" ]
+      },
+      "tooltip": true
+    },
+
+    // Network
+    "network": {
+        "format": "{essid}",
+        "format-wifi": "  {essid}",
+        "format-ethernet": "  Wired",
+        "format-disconnected": "󰖪 Disconnected",
+        "format-disabled": " ",
+        "tooltip-format-wifi": "  {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}",
+        "tooltip-format-ethernet": " {ifname}\nIP: {ipaddr}\n up: {bandwidthUpBits} down: {bandwidthDownBits}",
+        "tooltip-format-disconnected": "Click to open network manager",
+        "max-length": 50,
+        "on-click": "networkmanager_dmenu",
+        "on-click-right": "nm-connection-editor"
+    },
+
+    "clock": {
+        "format": "  {:%H:%M} ",
+        "format-alt": "  {:%A, %d %B %Y} ",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "weeks-pos": "left",
+            "on-scroll": 1,
+            "format": {
+                "months": "<span color='#a6e3a1'><b>{}</b></span>",
+                "days": "<span color='#f9e2af'>{}</span>",
+                "weeks": "<span color='#cba6f7'>W{}</span>",
+                "weekdays": "<span color='#89b4fa'><b>{}</b></span>",
+                "today": "<span color='#f38ba8'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click": "mode",
+            "on-click-right": "swaymsg exec alacritty -e calcurse",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+
+    "group/logo-clock-idle": {
+      "orientation": "horizontal",
+      "modules": [
+        "custom/archlogo",
+        "clock",
+        "idle_inhibitor"
+      ]
+    },
+    "group/bt-vol-bat": {
+        "orientation": "horizontal",
+        "modules": [
+            "tray",
+            "bluetooth",
+            "pulseaudio",
+            "battery"
+        ]
+    }
+
+},
+

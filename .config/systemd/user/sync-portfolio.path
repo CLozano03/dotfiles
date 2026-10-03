@@ -1,0 +1,8 @@
+[Unit]
+Description=Sync portfolio with cloud
+
+[Path]
+PathChanged=/home/cesar/Documents/finanzas/portfolio_files/
+
+[Install]
+WantedBy=default.target

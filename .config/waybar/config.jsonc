@@ -1,0 +1,33 @@
+{
+    // General Settings
+    "output": "eDP-1",
+    "layer": "top",
+    "position": "top",
+
+    // Load Modules
+    "include": [
+        "~/.config/waybar/modules.jsonc"
+    ],
+
+    // Modules Left
+    "modules-left": [
+        "hyprland/workspaces",
+        "mpris"
+    ],
+
+    // Modules Center
+    "modules-center": [
+        "clock"
+    ],
+
+    // Modules Right
+    "modules-right": [
+        "tray",
+        "network",
+        "pulseaudio",
+        // "pulseaudio/slider",
+        "mic",
+        "battery"
+        // "custom/power"
+    ]
+}

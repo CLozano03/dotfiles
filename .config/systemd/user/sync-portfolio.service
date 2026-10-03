@@ -1,0 +1,7 @@
+[Unit]
+Description=Sync Portfolio to the cloud
+
+[Service]
+Type=oneshot
+
+ExecStart=/usr/bin/rclone copy /home/cesar/Documents/finanzas/portfolio_files/ drive_celozano6264:finanzas --include "cesarlozanoargueso.portfolio"
