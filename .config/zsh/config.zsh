@@ -19,6 +19,10 @@ if [[ "$VI_MODE" -eq 1 ]]; then
     bindkey -v
 fi
 
+# Re-bind TAB to fzf-tab after the `bindkey -d` reset above wiped it
+bindkey -M emacs '^I' fzf-tab-complete
+bindkey -M viins '^I' fzf-tab-complete
+
 bindkey '^P' history-search-backward
 bindkey '^N' history-search-forward
 bindkey '<Down>' history-search-backward
@@ -133,14 +137,15 @@ unalias gcm 2>/dev/null
 gcm() {
     # Function to generate commit message
     generate_commit_message() {
-        git diff --cached | llm "
+        git diff --cached | iconv -f UTF-8 -t UTF-16 -c | iconv -f UTF-16 -t UTF-8 -c | llm -m openrouter/cohere/north-mini-code:free "
 Below is a diff of all staged changes, coming from the command:
 
 \`\`\`
 git diff --cached
 \`\`\`
 
-Please generate a concise, one-line commit message for these changes, following the Conventional Commits format: <type>: <description>, using one of these types: feat, fix, chore, refactor, docs, test, style, perf. Reply with only the commit message, no explanation."
+Please generate a concise, one-line commit message for these changes, following the Conventional Commits format: <type>: <description>, using one of these types: feat, fix, chore, refactor, docs, test, style, perf. Reply with only the commit message, no explanation." |
+            sed '/^[[:space:]]*$/d' | tail -n 1 | sed -E 's/^"(.*)"$/\1/'
     }
 
     # Function to read user input compatibly with both Bash and Zsh
